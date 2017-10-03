@@ -46,7 +46,7 @@
         {{ $alert->appends(['sort' => 'colaborador'])->links() }}
         </div>
             <div class="container-fluid" >
-        <div class="widget-box" id="showtable">
+        <div class="widget-box" >
             <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
                 <h5>Alertas Resolvidos</h5>
             </div>

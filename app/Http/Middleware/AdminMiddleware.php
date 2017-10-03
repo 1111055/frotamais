@@ -21,7 +21,6 @@ class AdminMiddleware
         if($role->id == 1){
                 return $next($request);
         }else{
-            //dd('ola');
                 return redirect('/errors');
         }
         

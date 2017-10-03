@@ -53,6 +53,9 @@
                              <span class="pull-left">
                                  <button type="submit" class="btn btn-primary">
                                     Login
+                                  </button>
+                                  <button type="submit" class="btn btn-primary">
+                                    Recuperar PassWord
                                    </button>
                                 </span>
                          </div>

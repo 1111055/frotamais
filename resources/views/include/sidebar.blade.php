@@ -1,4 +1,4 @@
-<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+<div id="sidebar">
     <ul>
         <li {{ (Request::is('home') ? 'class=active' : '') }}><a href="{{route('home')}}"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
         <li {{ (Request::is('users') ? 'class=active' : '') }}> <a href="{{route('users.index')}}"><i class="icon icon-user"></i> <span>Colaboradores</span></a> </li>
