@@ -91,7 +91,7 @@
                         <h5>Consumos</h5>
                     </div>
                     <div class="widget-content">
-                        <div id="curve_chart" style="width: 800px; height: 255px"></div>
+                        <div id="curve_chart" style="width: 100%; height: 100%"></div>
                     </div>
 
                 </div>
@@ -99,27 +99,31 @@
         </div>
     </div>
 
-
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
+    google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Mes', 'Combustivel', 'Impostos', 'Pneus'],
+          ['Janeiro',  1000,      400,   980],
+          ['Fevereiro',  1170,      460,   750],
+          ['Março',  660,       1120, 1289],
+          ['Abril',  1030,      540,   690]
+        ]);
 
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
+        var options = {
+          title: 'Company Performance',
+          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
 
-            ]);
+        var chart = new google.visualization.AreaChart(document.getElementById('curve_chart'));
+        chart.draw(data, options);
 
-            var options = {
-                title: 'Company Performance',
-                curveType: 'function',
-                legend: { position: 'bottom' }
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-            chart.draw(data, options);
-        }
+        chart.draw(data, options);
+      }
     </script>
 
 @stop
