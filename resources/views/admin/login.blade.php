@@ -33,9 +33,9 @@
             <span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover">Lost password?</a></span>
             <span class="pull-right"><a type="submit" href="index.html" class="btn btn-success" /> Login</a></span>
         </div>
-    </form method="POST" action="/admin/register">
-    <form id="recoverform" action="#" class="form-vertical">
-        <p class="normal_text">Novo Email</p>
+    </form>
+    <form id="recoverform" method="POST" action="/admin/register" class="form-vertical">
+        <p class="normal_text">Email</p>
 
         <div class="controls">
             <div class="main_input_box">

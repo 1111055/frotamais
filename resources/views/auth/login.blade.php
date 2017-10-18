@@ -54,17 +54,14 @@
                                  <button type="submit" class="btn btn-primary">
                                     Login
                                   </button>
-                                  <button type="submit" class="btn btn-primary">
-                                    Recuperar PassWord
-                                   </button>
+                                    <span class="pull-left"><a href="{{ route('password.request') }}" class="flip-link btn btn-info" id="to-recover">Recuperar Password</a></span>
                                 </span>
                          </div>
                     </form>
 
 
              </div>
-        <script src="js/jquery.min.js"></script>  
-        <script src="js/matrix.login.js"></script> 
+
     </body>
 
 </html>
