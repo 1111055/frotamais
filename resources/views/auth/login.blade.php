@@ -54,7 +54,7 @@
                                  <button type="submit" class="btn btn-primary">
                                     Login
                                   </button>
-                                    <span class="pull-left"><a href="{{ route('password.request') }}" class="flip-link btn btn-info" id="to-recover">Recuperar Password</a></span>
+                                    <a href="{{ route('password.request') }}" class="flip-link btn btn-info" id="to-recover">Recuperar Password</a>
                                 </span>
                          </div>
                     </form>
