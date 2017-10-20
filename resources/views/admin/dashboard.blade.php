@@ -9,10 +9,10 @@
 
 
                     <ul class="quick-actions">
-                        <li class="bg_ly"> <a href="{{route('users.index')}}"> <i class="icon icon-user"></i>Colaboradores</a> </li>
-                        <li class="bg_ls"> <a href="{{route('vehicles.index')}}"> <i class="icon-truck"></i>Veículos</a> </li>
-                        <li class="bg_lo"> <a href="{{route('alerts.index')}}"> <i class="icon-bell"></i>Alertas</a> </li>
-                        <li class="bg_lg"> <a href="{{route('config.index')}}"> <i class="icon icon-cog"></i>Configurações</a> </li>
+                        <li class="bg_ly"> <a href="{{route('users.index')}}"> <i class="icon icon-user"></i></a> </li>
+                        <li class="bg_ls"> <a href="{{route('vehicles.index')}}"> <i class="icon-truck"></i></a> </li>
+                        <li class="bg_lo"> <a href="{{route('alerts.index')}}"> <i class="icon-bell"></i></a> </li>
+                        <li class="bg_lg"> <a href="{{route('config.index')}}"> <i class="icon icon-cog"></i></a> </li>
                     </ul>
                 
             
