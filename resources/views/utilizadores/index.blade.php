@@ -47,7 +47,7 @@
                 <table class="table table-bordered data-table" >
                     <thead>
                     <tr>
-                        <th>ID</th>
+                     
                         <th>Nome</th>
                         <th>Email</th>
                         <th>Contacto</th>
@@ -59,8 +59,8 @@
                     <tbody>
                     @foreach($users as $item)
                     <tr class="gradeX">
-                        <td><a href="{{route('users.show',$item->id)}}">{{ $item->id }}</a></td>
-                        <td>{{ $item->name }}</td>
+                        <td><a href="{{route('users.show',$item->id)}}">{{ $item->name }}</a></td>
+                        
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->contact }}</td>
                         <td>{{ $item->number }}</td>

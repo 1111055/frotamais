@@ -33,7 +33,9 @@ class TypeUserController extends Controller
      */
     public function create()
     {
-        //
+        $tuser = TypeUser::all();
+        //dd($expense);
+        return view('typeuser.create', compact('tuser'));
     }
 
     /**
@@ -60,7 +62,7 @@ class TypeUserController extends Controller
      */
     public function show($id)
     {
-        $tuser = ExpenseType::find($id);
+        $tuser = TypeUser::find($id);
 
 
         return view('typeuser.show',compact('tuser'));

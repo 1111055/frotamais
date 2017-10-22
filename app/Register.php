@@ -32,6 +32,7 @@ class Register extends Model
         $userst = DB::table('registers')
             ->select(DB::raw('sum(preco) as preco, vehicle_id'))
             ->groupBy('vehicle_id')
+            ->orderBy('preco','DESC')
             ->get();
 
         return $userst;
@@ -42,6 +43,7 @@ class Register extends Model
         $valty = DB::table('registers')
             ->select(DB::raw('sum(preco) as preco, type_id'))
             ->groupBy('type_id')
+            ->orderBy('preco','DESC')
             ->get();
 
         return $valty;

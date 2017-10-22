@@ -3,7 +3,7 @@
 @section('content')
 
 @if(session('sucess'))
-<div style="background-color:green;color:#FFF;padding:15px;width: 100%;">{{session('sucess')}}</div>
+<div style="background-color:green;color:#FFF;padding:15px;width: 25%;float: right;">{{session('sucess')}}</div>
 @endif
 
 @include ('admin.errors')
@@ -15,6 +15,7 @@
             {{ Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) }}
             <button type="submit" class="btn btn-danger btn-xs" style="float: left; margin-bottom: 10px; margin-left: 55px;">Eliminar</button>
             {{ Form::close() }}
+            <a href="/users" class="btn btn-info btn-xs" style="float: left; margin-bottom: 10px; margin-left: 5px;">Voltar</a>
 
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
