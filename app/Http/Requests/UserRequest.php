@@ -43,6 +43,7 @@ class UserRequest extends FormRequest
 
             'password.confirmed'  => 'PassWord Nao Corresponde!',
             'modelo.email' => 'ERRO EMAIL',
+            'contact.regex' => 'Erro no formato. Formato Obrigatorio: 9(1236)',
             //
 
             'required' => "ERRO: Falta preencher :attribute"
