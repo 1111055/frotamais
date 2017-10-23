@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
 
             'name' => 'required',
             'email' => 'required|email',
-            'contact' => 'required',
+            'contact' => 'required|regex:/9[1236][0-9]{7}|2[1-9][0-9]{7}/',
             'number' => 'required',
             'password' => 'required|confirmed',
             'password_confirmation' => 'required',
