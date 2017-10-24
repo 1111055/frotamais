@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
 
             'name' => 'required',
             'email' => 'required|email',
-            'contact' => 'required|regex:/9[1236][0-9]{7}|2[1-9][0-9]{7}/',
+            'contact' => 'required|regex:/^9[1236][0-9]{7}|2[1-9][0-9]{7}/',
             'number' => 'required',
             'password' => 'required|confirmed',
             'password_confirmation' => 'required',
@@ -43,7 +43,7 @@ class UserRequest extends FormRequest
 
             'password.confirmed'  => 'PassWord Nao Corresponde!',
             'modelo.email' => 'ERRO EMAIL',
-            'contact.regex' => 'Erro no formato. Formato Obrigatorio: 9(1236)',
+            'regex' => 'Erro no formato. Formato Obrigatorio: 9(1236)',
             //
 
             'required' => "ERRO: Falta preencher :attribute"
