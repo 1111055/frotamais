@@ -49,6 +49,22 @@ class Register extends Model
         return $valty;
     }
 
+        public static function expenseByCar($id)
+    {
+
+
+
+        $valty = DB::table('registers')
+            ->select(\DB::raw('DATE_FORMAT(created_at, "%m") as month, sum(preco) as preco'))
+          //  ->select(DB::raw('sum(preco) as preco, type_id'))
+            ->where('vehicle_id','=',$id)
+            ->groupBy('month')
+            ->orderBy('preco','DESC')
+            ->get();
+
+        return $valty;
+    }
+
 
 
 

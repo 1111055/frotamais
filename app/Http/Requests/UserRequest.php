@@ -28,9 +28,9 @@ class UserRequest extends FormRequest
 
             'name' => 'required',
             'email' => 'required|email',
-            'contact' => 'required|regex:/^9[1236][0-9]{7}|2[1-9][0-9]{7}/',
+            'contact' => 'required|max:12|min:9',
             'number' => 'required',
-            'password' => 'required|confirmed',
+            'password' => 'required|confirmed|min:6',
             'password_confirmation' => 'required',
             'typeuser' => 'required',
 
@@ -42,10 +42,10 @@ class UserRequest extends FormRequest
         return [
 
             'password.confirmed'  => 'PassWord Nao Corresponde!',
+            'contact.max' => 'Erro não pode passar os 12 numeros',
+            'contact.min' => 'Erro no minimo são 9 numeros',
+            'password.min' => 'Erro no minimo são 6 caracteres',
             'modelo.email' => 'ERRO EMAIL',
-            'regex' => 'Erro no formato. Formato Obrigatorio: 9(1236)',
-            //
-
             'required' => "ERRO: Falta preencher :attribute"
         ];
     }

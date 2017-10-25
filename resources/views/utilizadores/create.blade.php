@@ -3,7 +3,7 @@
 @section('content')
 
     @if(session('sucess'))
-        <div style="background-color:green;color:#FFF;padding:15px;width: 100%;">{{session('sucess')}}</div>
+        <div style="background-color:green;color:#FFF;padding:15px;width: 25%;float: right;">{{session('sucess')}}</div>
     @endif
 
     @include ('admin.errors')

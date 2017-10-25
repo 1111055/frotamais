@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Vehicle;
 use App\User;
+use App\Register;
 use Excel;
 use Input;
 use PDF;
@@ -77,6 +78,10 @@ class VehicleController extends Controller
     {
 
         $vehicle = Vehicle::find($id);
+        $teste =  Register::expenseByCar($id);
+
+        dd($teste);         
+
         return view('vehicles.show',compact('vehicle'));
     }
 
