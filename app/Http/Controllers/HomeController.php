@@ -8,6 +8,8 @@ use App\Vehicle;
 use App\ExpenseType;
 use Illuminate\Http\Request;
 use app\User;
+use Carbon\Carbon;
+
 class HomeController extends Controller
 {
     /**
@@ -28,18 +30,29 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = User::all();
-        $totaluser = $user->count();
-        $vehicle = Vehicle::all();
-        $totalcar = $vehicle->count();
-        $alert = Alert::all();
-        $totalalert = $alert->count();
-        $expense = ExpenseType::all();
-        $regist = Register::all();
 
-        $totalpreco = $regist->sum('preco');
+ 
+         
+        $vehicle = Vehicle::all();       
+        $expense = ExpenseType::all();
+      
+
+        // cont    
+        $totaluser = User::count();
+        $totalcar = $vehicle->count();
+        $totalalert = Alert::count();
+
 
         $teste =  Register::carsValues();
+
+        
+        $al = Alert::
+                orderBy('created_at','asc')
+                ->where('created_at','>',Carbon::now())
+                ->take(5)
+                ->get();   
+
+        //dd($al);
 
         foreach ($teste as $result) {
 
@@ -59,6 +72,6 @@ class HomeController extends Controller
 
 
 
-        return view('admin.dashboard', compact('totaluser','totalcar','totalalert','val','valtype'));
+        return view('admin.dashboard', compact('totaluser','totalcar','totalalert','val','valtype','al'));
     }
 }

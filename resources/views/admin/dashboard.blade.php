@@ -12,6 +12,7 @@
                         <li class="bg_ly"> <a href="{{route('users.index')}}"> <i class="icon icon-user" style="margin-top: 20%;"></i></a> </li>
                         <li class="bg_ls"> <a href="{{route('vehicles.index')}}"> <i class="icon-truck" style="margin-top: 20%;"></i></a> </li>
                         <li class="bg_lo"> <a href="{{route('alerts.index')}}"> <i class="icon-bell"  style="margin-top: 20%;"></i></a> </li>
+                        <li class="bg_lb"> <a href="{{route('registers.index')}}"> <i class="icon-money"  style="margin-top: 20%;"></i></a> </li>
                         <li class="bg_lg"> <a href="{{route('config.index')}}"> <i class="icon icon-cog"  style="margin-top: 20%;"></i></a> </li>
                     </ul>
                 
@@ -59,17 +60,15 @@
                     <h5>Proximas Tarefas</h5>
                   </div>
                   <div class="widget-content nopadding updates collapse in" id="collapseG3">
+                    @foreach($al as $item)
                     <div class="new-update clearfix"><i class="icon-ok-sign"></i>
-                      <div class="update-done"><a title="" href="#"><strong>Carro: 77-MM-66</strong></a> <span>dolor sit amet, consectetur adipiscing eli</span> 
-                          
+
+                      <div class="update-done"><a title="" href="{{route('alerts.show',$item->id)}}"><strong>{{ $item->user['name'] }}</strong></a> <span>{{$item->mensage}}</span>                           
                       </div>
 
-                      <div class="update-date"><span class="update-day">20</span>jan</div>
+                      <div class="update-date"><span class="update-day">{{ date('d', strtotime($item->created_at))}}</span>{{ date('M', strtotime($item->created_at))}}</div>
                     </div>
-                    <div class="new-update clearfix"> <i class="icon-gift"></i> <span class="update-notice"> <a title="" href="#"><strong>Congratulation Maruti, Happy Birthday </strong></a> <span>many many happy returns of the day</span> </span> <span class="update-date"><span class="update-day">11</span>jan</span> </div>
-                    <div class="new-update clearfix"> <i class="icon-move"></i> <span class="update-alert"> <a title="" href="#"><strong>Maruti is a Responsive Admin theme</strong></a> <span>But already everything was solved. It will ...</span> </span> <span class="update-date"><span class="update-day">07</span>Jan</span> </div>
-                    <div class="new-update clearfix"> <i class="icon-leaf"></i> <span class="update-done"> <a title="" href="#"><strong>Envato approved Maruti Admin template</strong></a> <span>i am very happy to approved by TF</span> </span> <span class="update-date"><span class="update-day">05</span>jan</span> </div>
-                    <div class="new-update clearfix"> <i class="icon-question-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>I am alwayse here if you have any question</strong></a> <span>we glad that you choose our template</span> </span> <span class="update-date"><span class="update-day">01</span>jan</span> </div>
+                    @endforeach
                   </div>
             </div>
         </div>

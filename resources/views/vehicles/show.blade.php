@@ -63,7 +63,7 @@
                         {!! Form::open(['url' => 'users','class' => 'form-horizontal']) !!}
 
                         <div class="control-group">
-                            {!! Form::label('N�mero Mecanogr�fico:',null, ['class' => 'control-label']) !!}
+                            {!! Form::label('Numero Mecanografico:',null, ['class' => 'control-label']) !!}
                             <div class="controls">
                                 {!! Form::text('number',$vehicle->user['number'],['readonly'],['class' => 'form-horizontal']) !!}
                             </div>
@@ -103,19 +103,30 @@
     <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
+
+       var teste = {!! json_encode($val) !!};
+       var stats = {!! json_encode($stats) !!};
       
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Mes', 'Combustivel', 'Impostos', 'Pneus'],
-          ['Janeiro',  1000,      400,   980],
-          ['Fevereiro',  1170,      460,   750],
-          ['Março',  660,       1120, 1289],
-          ['Abril',  1030,      540,   690]
-        ]);
+        var data = new google.visualization.DataTable();
+        
+        data.addColumn('string','Mes');
+
+        for(var k in teste){
+          
+             data.addColumn('number',teste[k]);
+        }
+        var count=0;
+        for(var r in stats){
+           
+             data.addRow([stats[count][0],stats[count][1],stats[count][2],stats[count][3],stats[count][4]]);
+             count++;
+        }    
+
 
         var options = {
-          title: 'Company Performance',
-          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+          title: 'Gasto do carro no corrente ano',
+          hAxis: {title: '2017',  titleTextStyle: {color: '#333'}},
           vAxis: {minValue: 0}
         };
 

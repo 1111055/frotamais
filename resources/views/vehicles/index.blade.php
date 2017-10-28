@@ -22,7 +22,6 @@
                 <table class="table table-bordered data-table">
                     <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Marca</th>
                         <th>Modelo</th>
                         <th>Matricula</th>
@@ -35,8 +34,7 @@
                     <tbody>
                     @foreach($vehicles as $item)
                     <tr class="gradeX">
-                        <td><a href="{{route('vehicles.show',$item->id)}}">{{ $item->id }}</a></td>
-                        <td>{{ $item->marca }}</td>
+                        <td><a href="{{route('vehicles.show',$item->id)}}">{{ $item->marca }}</a></td>
                         <td>{{ $item->modelo }}</td>
                         <td>{{ $item->matricula }}</td>
                         <td>{{ $item->dataregisto }}</td>

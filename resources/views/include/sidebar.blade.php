@@ -5,7 +5,7 @@
         <li {{ (Request::is('vehicles') ? 'class=active' : '') }}> <a href="{{route('vehicles.index')}}"><i class="icon-truck"></i> <span>Veículos</span></a> </li>
         <li {{ (Request::is('alerts') ? 'class=active' : '') }}><a href="{{route('alerts.index')}}"><i class="icon-bell"></i> <span>Alertas</span></a></li>
 
-        <li {{ (Request::is('registers') ? 'class=active' : '') }}> <a href="{{route('registers.index')}}"><i class="icon-bar-chart"></i> <span>Consumos</span></a>
+        <li {{ (Request::is('registers') ? 'class=active' : '') }}> <a href="{{route('registers.index')}}"><i class="icon-money"></i> <span>Despesas</span></a>
         </li>
     </ul>
 </div>

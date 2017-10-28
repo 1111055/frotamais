@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Vehicle;
 use App\User;
 use App\Register;
+use App\ExpenseType;
 use Excel;
 use Input;
 use PDF;
@@ -76,13 +77,21 @@ class VehicleController extends Controller
      */
     public function show($id)
     {
-
+        $val;
         $vehicle = Vehicle::find($id);
-        $teste =  Register::expenseByCar($id);
+        $stats =  Register::expenseByCarYear($id); 
+        //$teste2 = $teste->toArray();  
+        $tpd = ExpenseType::get();
+        
 
-        dd($teste);         
+        foreach ($tpd as $key => $value) {
 
-        return view('vehicles.show',compact('vehicle'));
+             $val[]=$value->typedesc;
+            # code...
+        }
+        //dd($teste);
+
+        return view('vehicles.show',compact('vehicle','val','stats'));
     }
 
     /**
