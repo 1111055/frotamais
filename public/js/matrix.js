@@ -1,6 +1,7 @@
 
 $(document).ready(function(){
 
+
 	
 	
 	// === Sidebar navigation === //
@@ -163,4 +164,10 @@ $(document).ready(function(){
 	});
 	
 });
+
+	$('#dataregisto').datepicker({
+
+		format: 'yyyy-mm-dd hh:mm:ss'	
+	});
+
 

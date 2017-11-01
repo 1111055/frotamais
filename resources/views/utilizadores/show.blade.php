@@ -12,15 +12,23 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
-            {{ Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) }}
-            <button type="submit" class="btn btn-danger btn-xs" style="float: left; margin-bottom: 10px; margin-left: 55px;">Eliminar</button>
-            {{ Form::close() }}
-            <a href="/users" class="btn btn-info btn-xs" style="float: left; margin-bottom: 10px; margin-left: 5px;">Voltar</a>
+    
 
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
                     <h5>Ficha Utilizador</h5>
                 </div>
+
+                <hr>
+
+                <div class="form-actions">
+                        {{ Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) }}
+                  <button type="submit" class="btn btn-danger btn-mini" style="float: left;display: inline;margin-top: 2%;">Eliminar</button>
+                    {{ Form::close() }}
+                    <a href="/users" class="btn btn-info btn-mini" style="margin-left: 2%;">Voltar</a>
+                    <a href="{{route('users.editar',$user->id)}}"> <i class="icon-edit icon-3x" style="margin-left: 2%;margin-top: 1%;"></i></a>
+                </div>
+                </hr>
                 <div class="widget-content nopadding">
                     {!! Form::open(['url' => 'users','class' => 'form-horizontal']) !!}
 
@@ -48,9 +56,6 @@
                         <div class="controls">
                             {!! Form::text('number',$user->number,['readonly'],['class' => 'form-horizontal']) !!}
                         </div>
-                    </div>
-                    <div class="form-actions">
-                        <a href="{{route('users.editar',$user->id)}}"> <i class="icon-edit icon-3x"></i></a>
                     </div>
 
                     {!! Form::close() !!}

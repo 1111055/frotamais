@@ -29,7 +29,8 @@ class RegisterRequest extends FormRequest
             'vehicle_id' => 'required',
             'kms' => 'required',
             'type_id' => 'required',
-            'preco' => 'required'
+            'preco' => 'required',
+            'dataregisto' => 'required'
 
         ];
     }

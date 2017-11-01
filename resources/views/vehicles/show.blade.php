@@ -7,20 +7,35 @@
     @endif
 
     @include ('admin.errors')
+    <style>
 
+    .numberos{color: #FFF;font-size: 24px; margin-top: 13%;}
+    .letras{color: #FFF;font-size: 12px; margin-top: 2%;}
+    </style>
 
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span12">
-            {{ Form::open(['route' => ['vehicles.destroy', $vehicle->id], 'method' => 'delete']) }}
-            <button type="submit" class="btn btn-danger btn-xs" style="float: left; margin-bottom: 10px; margin-left: 55px;">Eliminar</button>
-            {{ Form::close() }}
-            
+
                 <div class="widget-box">
 
                     <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
                         <h5>Ficha do Veiculo</h5>
                     </div>
+
+                    <hr>
+                       <div class="form-actions">
+                        <div style="float: left; display: inline; margin-top: 1%">
+                        {{ Form::open(['route' => ['vehicles.destroy', $vehicle->id], 'method' => 'delete']) }}
+                        <button type="submit" class="btn btn-danger btn-mini" >Eliminar</button>
+                        {{ Form::close() }}
+                        </div>
+                        <div style="margin-left: 9%;">    
+                            <a href="{{route('vehicles.edit',$vehicle->id)}}"> <i class="icon-edit icon-3x"></i></a>
+                        </div>
+                        </div>
+            
+                    <hr>
                     <div class="widget-content nopadding">
                         {!! Form::open(['url' => 'vehicles','class' => 'form-horizontal']) !!}
 
@@ -43,14 +58,30 @@
                                 {!! Form::text('kms',$vehicle->kms,['readonly'],['class' => 'form-horizontal']) !!}
                             </div>
                         </div>
-                        <div class="form-actions">
-                            <a href="{{route('vehicles.edit',$vehicle->id)}}"> <i class="icon-edit icon-3x"></i></a>
-                        </div>
+
                         {!! Form::close() !!}
 
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                   
+                           <div class="widget-box"> 
+                             <ul class="quick-actions">
+                                <li class="bg_ly"> <div class="numberos">{{ number_format($media,1) }}</div> 
+                                    <div class="letras">Média Anual</div></li>
+                                <li class="bg_lo"> <div class="numberos">{{ number_format($mediam,1) }}</div>
+                                     <div class="letras">Média Mensal</div></li>
+                                <li class="bg_lb"><div class="numberos"> {{ number_format($totalpk,2) }} </div>     <div class="letras">Preço por Km</div></li>
+                                <li class="bg_lg"> <div class="numberos"> {{ number_format($avgmonth,2) }} </div>     <div class="letras">Valor Médio Mensal</div></li>
+                            </ul>
+                           </div>     
+             </div>
+
         </div>
 
         <div class="row-fluid">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Vehicle;
 use App\TypeUser;
+use App\Register;
 use Excel;
 use Input;
 use PDF;
@@ -111,7 +112,18 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-      // $alertas = $user->alerts;
+        $car = Vehicle::all()->where('colaborador','=',$id);
+        $toarr = $car->toArray();
+        //$reg = Register::
+        //where('vehicle_id','=',$toarr->id)->get();
+
+        
+    $arr = '';
+    foreach ($toarr as $result) {
+            $arr = $result->id;
+      }  
+dd($arr);
+
         return view('utilizadores.show',compact('user','alertas'));
     }
 

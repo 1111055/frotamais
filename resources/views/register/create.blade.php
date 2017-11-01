@@ -49,6 +49,12 @@
                                 {!! Form::text('litros',null,['class' => 'form-horizontal']) !!}
                             </div>
                         </div>
+                        <div class="control-group">
+                               {!! Form::label('* Data: ',null, ['class' => 'control-label']) !!}
+                               <div class="controls">
+                                   {!! Form::text('dataregisto',null,['class' => 'form-horizontal','id' => 'dataregisto']) !!}
+                               </div>
+                         </div>
                         <div class="form-actions">
                             {!! Form::submit('GUARDAR',['class' => 'btn btn-success']) !!}
                         </div>

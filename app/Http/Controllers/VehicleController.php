@@ -9,6 +9,7 @@ use App\ExpenseType;
 use Excel;
 use Input;
 use PDF;
+use Carbon\Carbon;
 use App\Http\Requests\VehicleRequest;
 
 
@@ -79,7 +80,8 @@ class VehicleController extends Controller
     {
         $val;
         $vehicle = Vehicle::find($id);
-        $stats =  Register::expenseByCarYear($id); 
+        $stats =  Register::expenseByCarYear($id);
+        //$statsAvg =  Register::expenseByCarYearAvg($id);  
         //$teste2 = $teste->toArray();  
         $tpd = ExpenseType::get();
         
@@ -89,9 +91,77 @@ class VehicleController extends Controller
              $val[]=$value->typedesc;
             # code...
         }
-        //dd($teste);
 
-        return view('vehicles.show',compact('vehicle','val','stats'));
+        //Media anual 
+        //first and last  record
+        $firstkm = Register::all()
+        ->where('vehicle_id','=',$id)->first();
+        $lastkm = Register::all()
+        ->where('vehicle_id','=',$id)->last();
+        if($firstkm != '' and $lastkm != ''){
+           $firstkm=$firstkm->kms;
+           $lastkm=$lastkm->kms;
+        }
+        $totalkm = $lastkm-$firstkm;
+
+        // Total litros 
+        $totallt = Register::all()
+        ->where('vehicle_id','=',$id)->sum('litros');
+        $media = ($totallt/$totalkm)*100;
+
+        // preço anual por km
+        $totalpr = Register::all()
+        ->where('vehicle_id','=',$id)->sum('preco');
+
+        $totalpk = ($totalpr/$totalkm);
+
+        // ----- preço anual por km 
+
+
+        //------ media anual
+
+        // media actual mensal
+
+        $mediam=0;
+        $start = Carbon::now()->startOfMonth();
+        $end = Carbon::now();
+
+
+        $firstkm = Register::all()
+        ->where('vehicle_id','=',$id)
+        ->where('dataregisto','>',$start)
+        ->where('dataregisto','<',$end)
+        ->first();
+
+        
+        $lastkm = Register::all()
+        ->where('vehicle_id','=',$id)
+        ->where('dataregisto','>',$start)
+        ->where('dataregisto','<',$end)
+        ->last();
+
+        
+        if($firstkm != '' and $lastkm != ''){
+            $firstkm=$firstkm->kms;
+            $lastkm=$lastkm->kms;
+       
+            $totalkm = $lastkm-$firstkm;
+        }
+        // Total litros 
+        $totallt = Register::all()
+        ->where('vehicle_id','=',$id)
+        ->where('dataregisto','>',$start)
+        ->where('dataregisto','<',$end)
+        ->sum('litros');
+
+
+        $mediam = ($totallt/$totalkm)*100;    
+
+        //---------- Fim mendia mensal     
+
+        $avgmonth = Register::valuesAvg($id);
+        
+        return view('vehicles.show',compact('vehicle','val','stats','media','mediam','totalpk','avgmonth'));
     }
 
     /**

@@ -56,7 +56,7 @@ class Register extends Model
         $meses = array('Meses', 'Jan', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez');
 
         $valty = DB::table('registers')
-            ->select(\DB::raw('DATE_FORMAT(created_at, "%m") as month, sum(preco) as preco, type_id'))
+            ->select(\DB::raw('DATE_FORMAT(dataregisto, "%m") as month, sum(preco) as preco, type_id'))
             ->where('vehicle_id','=',$id)
             ->groupBy('month','type_id')
             ->orderBy('preco','DESC')
@@ -142,40 +142,29 @@ class Register extends Model
         return $final;
     }
 
-    public static function valuesChart($id, $months = 12) {
-    $values = array();
-    $meses = array('Meses', 'Jan', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez');
+    public static function valuesAvg($id, $months = 12) {
 
-    $date_month = Carbon::now();
-    Carbon:: useMonthsOverflow(false);
+        $valty = DB::table('registers')
+            ->select(\DB::raw('DATE_FORMAT(dataregisto, "%m") as month, sum(preco) as preco, type_id'))
+            ->where('vehicle_id','=',$id)
+            ->groupBy('month','type_id')
+            ->get();
+        $t1 = $valty->toArray();
+        $total= 0;
+        $cont = 0;
 
-    for ($month=0; $month<$months; $month++){
-        $d1 = $date_month->startOfMonth()->toDateString();
-        $d2 = $date_month->endOfMonth()->toDateString();
 
-        $combustivel= 0;
-        $pneus = 0;
-        $impostos = 0;
-        $lavagens=0;
+        foreach ($t1 as $key => $value) {
 
-        //$debit = 0;
-
-        foreach ($register as $key => $resg) {
-            $combustivel = $currentAccount->lines()->credit()->where('date', '>=', $d1)->where('date', '<=', $d2)->sum('value');
-            $debit += $currentAccount->lines()->debit()->where('date', '>=', $d1)->where('date', '<=', $d2)->sum('value');
+            $total += $value->preco; 
+            $cont++;
         }
 
-        $values[$month]['fuel'] = $credit;
-        $values[$month]['tie'] = $debit;
-        $values[$month]['tax'] = $d1;
-        $values[$month]['clean'] = $d2;
-        $values[$month]['month'] = $meses[$date_month->month];
+        $values = ($total/$cont);
 
-        $date_month->subMonth(1);
-
-    }
+       // dd($total);
     return $values;
-}
+    }
 
 
 

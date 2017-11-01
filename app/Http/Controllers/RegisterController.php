@@ -27,7 +27,7 @@ class RegisterController extends Controller
     {
 
         if(request()->has('type')){
-            $register = Register::orderBy('vehicle_id')->where('type_id',request('type'))->paginate(10)->appends('type_id',request('type'));
+            $register = Register::orderBy('vehicle_id','dataregisto')->where('type_id',request('type'))->paginate(10)->appends('type_id',request('type'));
         }else{
             $register = Register::orderBy('vehicle_id')->paginate(10);
         }   
@@ -64,6 +64,13 @@ class RegisterController extends Controller
     {
 
         $request->persist();
+
+        $ve = Vehicle::find($request->vehicle_id);
+
+        $ve->kms = $request->kms;
+
+        $ve->save();
+
 
         return redirect()->route('registers.index')->with('sucess','Registo inserido com sucesso.');
 
@@ -121,6 +128,7 @@ class RegisterController extends Controller
         $register->kms=$request->kms;
         $register->preco=$request->preco;
         $register->litros=$request->litros;
+        $register->dataregisto=$request->dataregisto;
 
 
         $register->save();

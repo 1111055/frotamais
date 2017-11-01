@@ -36,6 +36,7 @@
                         <th>tipo de despesa</th>
                         <th>Preco</th>
                         <th>Litros</th>
+                        <th>Data</th>
 
                     </tr>
                     </thead>
@@ -48,6 +49,7 @@
                             <td>{{ $item->typexpense['typedesc'] }}</td>
                             <td>{{ $item->preco }}</td>
                             <td>{{ $item->litros }}</td>
+                            <td>{{$item->dataregisto}}</td>
                         </tr>
                     @endforeach
                     </tbody>

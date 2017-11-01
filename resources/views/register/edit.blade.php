@@ -57,7 +57,7 @@
                         <div class="control-group">
                             {!! Form::label('Data:',null, ['class' => 'control-label']) !!}
                             <div class="controls">
-                                {!! Form::text('created_at',$register->created_at,['class' => 'form-horizontal','id' => 'dataregisto']) !!}
+                                {!! Form::text('dataregisto',$register->datadesp,['class' => 'form-horizontal','id' => 'dataregisto']) !!}
                             </div>
                         </div>
                         <div class="form-actions">
