@@ -86,10 +86,8 @@
 // Load Charts and the corechart package.
 google.charts.load('current', {'packages':['corechart']});
 
-// Draw the pie chart for Sarah's pizza when Charts is loaded.
 google.charts.setOnLoadCallback(drawSarahChart);
 
-// Draw the pie chart for the Anthony's pizza when Charts is loaded.
 google.charts.setOnLoadCallback(drawAnthonyChart);
 
 

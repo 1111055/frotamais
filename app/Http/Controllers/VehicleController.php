@@ -81,7 +81,8 @@ class VehicleController extends Controller
         $val;
         $vehicle = Vehicle::find($id);
         $stats =  Register::expenseByCarYear($id);
-        //$statsAvg =  Register::expenseByCarYearAvg($id);  
+        $monthstats =  Register::expenseAVGforMonth($id);  
+       // dd($monthstats);
         //$teste2 = $teste->toArray();  
         $tpd = ExpenseType::get();
         
@@ -107,14 +108,16 @@ class VehicleController extends Controller
         // Total litros 
         $totallt = Register::all()
         ->where('vehicle_id','=',$id)->sum('litros');
-        $media = ($totallt/$totalkm)*100;
+        if($totallt > 0 AND $totalkm > 0 ){
+                $media = ($totallt/$totalkm)*100;
+        }
 
         // preço anual por km
         $totalpr = Register::all()
         ->where('vehicle_id','=',$id)->sum('preco');
-
-        $totalpk = ($totalpr/$totalkm);
-
+        if($totalpr > 0 AND $totalkm > 0 ){
+            $totalpk = ($totalpr/$totalkm);
+        }  
         // ----- preço anual por km 
 
 
@@ -154,14 +157,14 @@ class VehicleController extends Controller
         ->where('dataregisto','<',$end)
         ->sum('litros');
 
-
+ if($totallt > 0 AND $totalkm > 0 ){
         $mediam = ($totallt/$totalkm)*100;    
-
+}
         //---------- Fim mendia mensal     
 
         $avgmonth = Register::valuesAvg($id);
         
-        return view('vehicles.show',compact('vehicle','val','stats','media','mediam','totalpk','avgmonth'));
+        return view('vehicles.show',compact('vehicle','val','stats','media','mediam','totalpk','avgmonth','monthstats'));
     }
 
     /**

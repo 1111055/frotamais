@@ -142,6 +142,317 @@ class Register extends Model
         return $final;
     }
 
+    public static function expenseAVGforMonth($id)
+    {
+
+
+        $meses = array('Meses', 'Jan', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez');
+
+        $valty = DB::table('registers')
+            ->select(\DB::raw('DATE_FORMAT(dataregisto, "%m") as month, sum(litros) as litros'))
+            ->where('vehicle_id','=',$id)
+            ->where('type_id','=','2')
+            ->groupBy('month')
+            ->get();
+
+
+
+        $arr =  $valty->toArray();   
+        $final=array();
+
+        $arr1=array('Jan',0);
+        $arr2=array('Fev',0);
+        $arr3=array('Mar',0);
+        $arr4=array('Abr',0);
+        $arr5=array('Mai',0);
+        $arr6=array('Jun',0);
+        $arr7=array('Jul',0);
+        $arr8=array('Ago',0);
+        $arr9=array('Set',0);
+        $arr10=array('Out',0);
+        $arr11=array('Nov',0);
+        $arr12=array('Dez',0);
+        
+        foreach ($arr as $key => $value) {
+
+            switch ($value->month) {
+                case '01':
+                $total=0;    
+                $kmi = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '01')
+                    ->get()->first();
+
+                $kmf = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '01')
+                    ->get()->last();
+
+                $total = $kmf->kms - $kmi->kms;         
+                if($total > 0){
+                    $arr1[1]=($value->litros / $total) * 100;
+                }
+
+                    break;
+                case '02':
+                $total=0;    
+                $kmi = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '02')
+                    ->get()->first();
+
+                $kmf = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '02')
+                    ->get()->last();
+
+                $total = $kmf->kms - $kmi->kms;         
+                if($total > 0){
+                    $arr2[1]=($value->litros / $total) * 100;
+                }
+                    break;
+                case '03':
+                $total=0;    
+                $kmi = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '03')
+                    ->get()->first();
+
+                $kmf = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '03')
+                    ->get()->last();
+
+                $total = $kmf->kms - $kmi->kms;         
+                if($total > 0){
+                    $arr3[1]=($value->litros / $total) * 100;
+                }
+                    break;
+                case '04':
+                $total=0;    
+                $kmi = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '04')
+                    ->get()->first();
+
+                $kmf = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '04')
+                    ->get()->last();
+
+                $total = $kmf->kms - $kmi->kms;         
+                if($total > 0){
+                    $arr4[1]=($value->litros / $total) * 100;
+                }
+                    break;
+                case '05':
+                $total=0;    
+                $kmi = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '05')
+                    ->get()->first();
+
+                $kmf = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '05')
+                    ->get()->last();
+
+                $total = $kmf->kms - $kmi->kms;         
+                if($total > 0){
+                    $arr5[1]=($value->litros / $total) * 100;
+                }
+                    break;
+                case '06':
+                $total=0;    
+                $kmi = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '06')
+                    ->get()->first();
+
+                $kmf = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '06')
+                    ->get()->last();
+
+                $total = $kmf->kms - $kmi->kms;         
+                if($total > 0){
+                    $arr6[1]=($value->litros / $total) * 100;
+                }
+                    break;
+                case '07':
+                $total=0;    
+                $kmi = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '07')
+                    ->get()->first();
+
+                $kmf = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '07')
+                    ->get()->last();
+
+                $total = $kmf->kms - $kmi->kms;         
+                if($total > 0){
+                    $arr7[1]=($value->litros / $total) * 100;
+                }
+                case '08':
+                $total=0;    
+                $kmi = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '08')
+                    ->get()->first();
+
+                $kmf = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '08')
+                    ->get()->last();
+
+                $total = $kmf->kms - $kmi->kms;         
+                if($total > 0){
+                    $arr8[1]=($value->litros / $total) * 100;
+                }
+                    break;
+                case '09':
+                $total=0;    
+                $kmi = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '09')
+                    ->get()->first();
+
+                $kmf = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '09')
+                    ->get()->last();
+
+                $total = $kmf->kms - $kmi->kms;         
+                if($total > 0){
+                    $arr9[1]=($value->litros / $total) * 100;
+                }
+                    break;
+                case '10':
+                $total=0;    
+                $kmi = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '10')
+                    ->get()->first();
+
+                $kmf = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '10')
+                    ->get()->last();
+
+                $total = $kmf->kms - $kmi->kms;         
+                if($total > 0){
+                    $arr10[1]=($value->litros / $total) * 100;
+                }
+                    break;
+                case '11':
+                $total=0;    
+                $kmi = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '11')
+                    ->get()->first();
+
+                $kmf = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '11')
+                    ->get()->last();
+
+                $total = $kmf->kms - $kmi->kms;         
+                if($total > 0){
+                    $arr11[1]=($value->litros / $total) * 100;
+                }
+                    break;
+                case '12':
+                $total=0;    
+                $kmi = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '12')
+                    ->get()->first();
+
+                $kmf = DB::table('registers')
+                    ->select(\DB::raw('kms'))
+                    ->where('vehicle_id','=',$id)
+                    ->where('type_id','=','2')
+                    ->whereMonth('dataregisto', '=', '12')
+                    ->get()->last();
+
+                $total = $kmf - $kmi;         
+                if($total > 0){
+                    $arr12[1]=($value->litros / $total) * 100;
+                }
+                    break;                    
+
+            }
+
+
+         }
+
+        
+        $final[]=$arr1;
+        $final[]=$arr2;
+        $final[]=$arr3;
+        $final[]=$arr4;
+        $final[]=$arr5;
+        $final[]=$arr6;
+        $final[]=$arr7;
+        $final[]=$arr8;
+        $final[]=$arr9;
+        $final[]=$arr10;
+        $final[]=$arr11;
+        $final[]=$arr12;
+         
+
+
+        return $final;
+    }
+
     public static function valuesAvg($id, $months = 12) {
 
         $valty = DB::table('registers')

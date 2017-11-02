@@ -128,17 +128,33 @@
                 </div>
             </div>
         </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+
+                    <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
+                        <h5>Médias Mensais</h5>
+                    </div>
+                    <div class="widget-content">
+                        <div id="curve_chart_avg" style="width: 100%; height: 100%"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChartAVG);
 
-       var teste = {!! json_encode($val) !!};
-       var stats = {!! json_encode($stats) !!};
+
       
       function drawChart() {
+       var teste = {!! json_encode($val) !!};
+       var stats = {!! json_encode($stats) !!};
         var data = new google.visualization.DataTable();
         
         data.addColumn('string','Mes');
@@ -165,6 +181,33 @@
         chart.draw(data, options);
 
         chart.draw(data, options);
+      }
+
+    function drawChartAVG() {
+        var stats = {!! json_encode($monthstats) !!};
+        var data = new google.visualization.DataTable();
+        
+        data.addColumn('string','Mes');
+        data.addColumn('number','Media');
+        
+        var count=0;
+        for(var r in stats){
+           
+             data.addRow([stats[count][0],stats[count][1]]);
+             count++;
+        }    
+
+
+        var options = {
+          title: 'Media do carro Mensal',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart_avg'));
+
+        chart.draw(data, options);
+
       }
     </script>
 
