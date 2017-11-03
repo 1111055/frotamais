@@ -112,19 +112,19 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $car = Vehicle::all()->where('colaborador','=',$id);
-        $toarr = $car->toArray();
-        //$reg = Register::
-        //where('vehicle_id','=',$toarr->id)->get();
+//         $car = Vehicle::all()->where('colaborador','=',$id);
+//         $toarr = $car->toArray();
+//         //$reg = Register::
+//         //where('vehicle_id','=',$toarr->id)->get();
 
         
-    $arr = '';
-    foreach ($toarr as $result) {
-            $arr = $result->id;
-      }  
-dd($arr);
+//     $arr = '';
+//     foreach ($toarr as $result) {
+//             $arr = $result->id;
+//       }  
+// dd($arr);
 
-        return view('utilizadores.show',compact('user','alertas'));
+        return view('utilizadores.show',compact('user'));
     }
 
     /**
