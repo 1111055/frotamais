@@ -18,7 +18,7 @@ class AdminMiddleware
     {
         $role = Auth::user()->role;
 
-        if($role->id == 1){
+        if($role->id == 2 || $role->id == 1){
                 return $next($request);
         }else{
                 return redirect('/errors');

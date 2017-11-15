@@ -13,7 +13,9 @@
                         <li class="bg_ls"> <a href="{{route('vehicles.index')}}"> <i class="icon-truck" style="margin-top: 20%;"></i></a> </li>
                         <li class="bg_lo"> <a href="{{route('alerts.index')}}"> <i class="icon-bell"  style="margin-top: 20%;"></i></a> </li>
                         <li class="bg_lb"> <a href="{{route('registers.index')}}"> <i class="icon-money"  style="margin-top: 20%;"></i></a> </li>
+                         @if(Auth::user()->typeuser==1)
                         <li class="bg_lg"> <a href="{{route('config.index')}}"> <i class="icon icon-cog"  style="margin-top: 20%;"></i></a> </li>
+                        @endif
                     </ul>
                 
             
