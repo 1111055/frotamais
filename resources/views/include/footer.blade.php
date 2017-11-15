@@ -1,7 +1,7 @@
 <!--Footer-part-->
 
 <div class="row-fluid">
-    <div id="footer" class="span12"> 2017 &copy; ISEP/PESTI 2016/2017 Realizado por Marco Mendes </div>
+    <div id="footer" class="span12"> 2017 &copy; Frota+ Marco Mendes Developer </div>
 </div>
 
 <!--end-Footer-part-->
