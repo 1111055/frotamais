@@ -51,7 +51,7 @@ class LoginController extends Controller
         $role = $this->guard()->user()->role;
         $idu  = $this->guard()->user()->id;
 
-        if($role->id == 1 && $role->id == 2){
+        if($role->id == 1 || $role->id == 2){
                 return redirect('/home');
         }
         if($role->id == 3 ){
