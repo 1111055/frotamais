@@ -64,7 +64,7 @@
             </div>
         </div>
     </div>
-
+    @if(Auth::user()->typeuser==1)
     <div class="row-fluid">
         <div class="span12">
             <div class="widget-box">
@@ -99,6 +99,7 @@
             </div>
         </div>
     </div>
+    @endif
     <div class="row-fluid">
             <div class="span12">
                 <div class="widget-box">
