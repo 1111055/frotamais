@@ -111,7 +111,7 @@ data.addColumn('number', 'Slices');
     }
 
 // Set options for Sarah's pie chart.
-var options = {title:'All Values Cars',
+var options = {title:'',
 width:'100%',
 height: '100%', pieHole: 0.4,};
 
@@ -137,7 +137,7 @@ function drawAnthonyChart() {
     }
 
 // Set options for Sarah's pie chart.
-    var options = {title:'All Values Cars',
+    var options = {title:'',
         width:'100%',
         height: '100%', pieHole: 0.4};
 
