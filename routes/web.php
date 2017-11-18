@@ -95,6 +95,18 @@ Route::post('tuser', 'TypeUserController@store');
 Route::put('tuser/update/{id}',         ['as' => 'tuser.update',  'uses' => 'TypeUserController@update']);
 Route::delete('tuser/destroy/{id}',     ['as' => 'tuser.destroy', 'uses' => 'TypeUserController@destroy']);
 
+// Empresa
+Route::get('company',                   ['as' => 'company.index','uses' => 'CompanyController@index']);
+Route::get('company/create',            ['as' => 'company.create','uses' => 'CompanyController@create']);
+Route::get('company/show/{id}',         ['as' => 'company.show','uses' => 'CompanyController@show']);
+Route::get('company/edit/{id}',          ['as' => 'company.edit', 'uses'  => 'CompanyController@edit']);
+Route::post('company', 'CompanyController@store');
+Route::put('company/update/{id}',         ['as' => 'company.update',  'uses' => 'CompanyController@update']);
+Route::delete('company/destroy/{id}',     ['as' => 'company.destroy', 'uses' => 'CompanyController@destroy']);
+Route::get('company/export',                     ['as' => 'company.export', 'uses' => 'CompanyController@export']);
+Route::get('company/pdf',                     ['as' => 'company.pdf', 'uses' => 'CompanyController@pdf']);
+
+
 
 // tipos de despesas
 Route::get('config',                   ['as' => 'config.index','uses' => 'ConfigController@index']);
