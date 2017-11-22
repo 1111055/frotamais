@@ -46,25 +46,25 @@
                             <div class="control-group">
                                 {!! Form::label('* Nome:',null, ['class' => 'control-label']) !!}
                                 <div class="controls">
-                                    {!! Form::text('name',null,['class' => 'form-horizontal']) !!}
+                                    {!! Form::text('nome',null,['class' => 'form-horizontal']) !!}
                                 </div>
                             </div>
 
                             <div class="control-group">
-                                {!! Form::label('* Morada:',null, ['class' => 'control-label']) !!}
+                                {!! Form::label('Morada:',null, ['class' => 'control-label']) !!}
                                 <div class="controls">
                                     {!! Form::text('morada',null,['class' => 'form-horizontal']) !!}
                                 </div>
                             </div>
                             <div class="control-group">
-                                {!! Form::label('* Localidade:',null, ['class' => 'control-label']) !!}
+                                {!! Form::label('Localidade:',null, ['class' => 'control-label']) !!}
                                 <div class="controls">
                                     {!! Form::text('localidade',null,['class' => 'form-horizontal']) !!}
                                 </div>
                             </div>
 
                             <div class="control-group">
-                                {!! Form::label('* Cod Postal:',null, ['class' => 'control-label']) !!}
+                                {!! Form::label('Cod Postal:',null, ['class' => 'control-label']) !!}
                                 <div class="controls">
                                     {!! Form::text('cod_postal',null,['class' => 'form-horizontal']) !!}
                                 </div>
@@ -72,7 +72,7 @@
                             <div class="control-group">
                                 {!! Form::label('* Nif:',null, ['class' => 'control-label']) !!}
                                 <div class="controls">
-                                    {!! Form::password('nif',null,['class' => 'form-horizontal']) !!}
+                                    {!! Form::text('nif',null,['class' => 'form-horizontal']) !!}
                                 </div>
                             </div>
                             <div class="form-actions">

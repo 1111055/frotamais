@@ -20,6 +20,8 @@
                 
             
             </div>
+
+           @if(!$val['1'] == 0)
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
                     <h5>Controlo de todo o custo por carro.</h5>
@@ -29,7 +31,8 @@
 
                 </div>
             </div>
-
+            @endif
+            @if(!$valtype['1'] == 0)
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
                     <h5>Custo total por despesa.</h5>
@@ -38,7 +41,7 @@
                     <td><div id="Anthony_chart_div" style="border: 1px solid #ccc"></div></td>
                 </div>
             </div>
-
+            @endif
         </div>
 
 

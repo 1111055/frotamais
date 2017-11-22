@@ -44,7 +44,6 @@ class HomeController extends Controller
 
 
         $teste =  Register::carsValues();
-
         
         $al = Alert::
                 orderBy('created_at','asc')
@@ -69,6 +68,18 @@ class HomeController extends Controller
 
             $valtype[$nametype->typedesc]=(double)$result->preco;
         }
+        if(empty($val)){
+
+
+            $val['1'] = '0';
+        }
+        if(empty($valtype)){
+
+
+            $valtype['1'] = '0';
+        }
+        
+
 
 
 

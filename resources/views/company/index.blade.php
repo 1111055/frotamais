@@ -59,7 +59,7 @@
                     <tbody>
                     @foreach($company as $item)
                     <tr class="gradeX">
-                        <td><a href="{{route('users.show',$item->id)}}">{{ $item->nome }}</a></td>
+                        <td><a href="{{route('company.show',$item->id)}}">{{ $item->nome }}</a></td>
                         
                         <td>{{ $item->morada }}</td>
                         <td>{{ $item->localidade }}</td>

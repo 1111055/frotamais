@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','contact','number','vehicle','activo', 'onchange','typeuser'
+        'name', 'email', 'password','contact','number','vehicle','activo', 'onchange','typeuser', 'company_id'
     ];
 
     /**
@@ -46,6 +46,11 @@ class User extends Authenticatable
     public function role()
     {
         return $this->hasOne('App\TypeUser','id','typeuser');
+    }
+
+    public function company()
+    {
+        return $this->hasOne('App\Company','id','company_id');
     }
 
 

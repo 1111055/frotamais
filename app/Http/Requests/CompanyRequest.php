@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Company;
 
 class CompanyRequest extends FormRequest
 {
@@ -35,10 +36,6 @@ class CompanyRequest extends FormRequest
     {
         return [
 
-            //'marca.required'  => 'okkkkkkkkkkkkkkkkkkkkkkkkk olha a marca!',
-           // 'modelo.email' => 'ERRO EMAIL',
-            //
-
             'required' => "ERRO: Falta preencher :attribute"
         ];
     }
@@ -46,8 +43,8 @@ class CompanyRequest extends FormRequest
     public function persist(){
 
 
-        Alert::create(
-            request(['colaborador','mensage','date'])
+        Company::create(
+            request(['nome','morada','cod_postal','activo','nif'])
         );
     }
 }

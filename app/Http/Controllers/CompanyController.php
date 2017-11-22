@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use Illuminate\Http\Request;
+use App\Http\Requests\CompanyRequest;
 
 class CompanyController extends Controller
 {
@@ -37,6 +38,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
+
          return view('company.create');
         
     }
@@ -47,20 +49,25 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CompanyRequest $request)
     {
-        //
-    }
+       
+        $request->persist();
 
+        return redirect()->route('company.index')->with('sucess','Empresa criada com sucesso.');
+    }
     /**
      * Display the specified resource.
      *
      * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show($id)
     {
-        //
+        $company = Company::find($id);
+
+
+        return view('company.show',compact('company'));
     }
 
     /**
@@ -69,9 +76,11 @@ class CompanyController extends Controller
      * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function edit(Company $company)
+    public function edit($id)
     {
-        //
+        
+        $company = Company::find($id);
+        return view('company.edit', compact('company'));
     }
 
     /**
@@ -81,9 +90,20 @@ class CompanyController extends Controller
      * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(CompanyRequest $request, $id)
     {
-        //
+        $company = Company::find($id);
+
+
+        $company->nome=$request->nome;
+        $company->morada=$request->morada;
+        $alert->date=$request->date;
+
+
+        $alert->save();
+
+
+        return redirect()->route('alerts.show',$alert->id)->with('sucess','Alerta actualizado com sucesso.');
     }
 
     /**
