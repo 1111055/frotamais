@@ -38,7 +38,7 @@ class HomeController extends Controller
       
 
         // cont    
-        $totaluser = User::count();
+        $totaluser = User::where('id','!=','1')->count();
         $totalcar = $vehicle->count();
         $totalalert = Alert::count();
 
