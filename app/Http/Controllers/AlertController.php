@@ -48,7 +48,7 @@ class AlertController extends Controller
     public function create()
     {
         $user  = User::all();
-       $colaborador = $user->pluck('name','id');
+        $colaborador = $user->pluck('name','id');
         return view('alertas.create',compact('colaborador'));
     }
 

@@ -25,7 +25,7 @@ class CompanyController extends Controller
 
          $company = Company::
                 orderBy('nome','asc')
-                ->where('activo','=','1')->paginate(5);
+                ->paginate(5);
 
         
          return view('company.index', compact('company'));
@@ -93,17 +93,25 @@ class CompanyController extends Controller
     public function update(CompanyRequest $request, $id)
     {
         $company = Company::find($id);
+        $activo = 0;
 
+    
+        if($request->activo == 'on'){
+
+                $activo = 1;
+        }
 
         $company->nome=$request->nome;
         $company->morada=$request->morada;
-        $alert->date=$request->date;
+        $company->cod_postal=$request->cod_postal;
+        $company->nif=$request->nif;
+        $company->activo=$activo;
 
 
-        $alert->save();
+        $company->save();
 
 
-        return redirect()->route('alerts.show',$alert->id)->with('sucess','Alerta actualizado com sucesso.');
+        return redirect()->route('company.show',$company->id)->with('sucess','Empresa actualizada com sucesso.');
     }
 
     /**

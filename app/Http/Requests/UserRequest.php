@@ -50,13 +50,9 @@ class UserRequest extends FormRequest
         ];
     }
 
-    public function persist(){
+    public function persist($idcompany){
 
-       // dd(request->all());
-      //  dd(request()->all());
-        // User::create(
-        //     request()->all()
-        // );
+
 
         User::create([
             'name' => request()->name,
@@ -65,7 +61,8 @@ class UserRequest extends FormRequest
             'number' => request()->number,
             'password' => bcrypt(request()->password),
             'typeuser' => request()->typeuser,
-            'company_id' => request()->company_id,
+            'company_id' => $idcompany,
+
         ]);
     }
 

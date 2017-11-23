@@ -7,11 +7,15 @@ use App\User;
 use App\Vehicle;
 use App\TypeUser;
 use App\Register;
+use App\Company;
 use Excel;
 use Input;
 use PDF;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
@@ -93,9 +97,11 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+       $user = Auth::user();
 
+        $idcompany = $user->company_id;
         //dd($request->all());
-        $request->persist();
+        $request->persist($idcompany);
 
         return redirect()->route('users.index')->with('sucess','Colaborador criado com sucesso.');
 
@@ -135,10 +141,12 @@ class UserController extends Controller
      */
     public function editar($id)
     {
-        $user = User::find($id);
+        $user  = User::find($id);
         $type  = TypeUser::all()->where('id','<>',1);
         $typeu = $type->pluck('typedesc','id');
-        return view('utilizadores.edit',compact('user','typeu'));
+        $emp   = Company::all();
+        $company = $emp->pluck('nome','id');
+        return view('utilizadores.edit',compact('user','typeu','company'));
     }
 
     /**

@@ -1,4 +1,5 @@
 @extends('admin.app')
+@extends('admin.app')
 
 @section('content')
 
@@ -54,6 +55,15 @@
                         {!! Form::label('* Tipo de Utilizador:',null, ['class' => 'control-label']) !!}
                         <div class="controls">
                             {!! Form::select('typeuser', $typeu,$user->typeuser,['class' => 'form-horizontal']) !!}
+                        </div>
+
+                    </div>
+                    @endif
+                   @if(Auth::user()->typeuser==1)
+                    <div class="control-group">
+                        {!! Form::label('* Empresa:',null, ['class' => 'control-label']) !!}
+                        <div class="controls">
+                            {!! Form::select('company_id', $company,$user->company_id,['class' => 'form-horizontal']) !!}
                         </div>
 
                     </div>

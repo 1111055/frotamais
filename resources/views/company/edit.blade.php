@@ -13,51 +13,49 @@
         <div class="span10">
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
-                    <h5>Editar Utilizador</h5>
+                    <h5>Editar Empresa</h5>
                 </div>
                 <div class="widget-content nopadding">
 
-                    {!! Form::model($user, [
+                    {!! Form::model($company, [
                             'method' => 'PUT',
-                            'route' => ['users.update', $user->id],
+                            'route' => ['company.update', $company->id],
                             'class' => 'form-horizontal'
                         ]) !!}
 
                     <div class="control-group">
                         {!! Form::label('* Nome:',null, ['class' => 'control-label']) !!}
                         <div class="controls">
-                            {!! Form::text('name',$user->name,['class' => 'form-horizontal']) !!}
+                            {!! Form::text('nome',$company->nome,['class' => 'form-horizontal']) !!}
                         </div>
                     </div>
 
                     <div class="control-group">
-                        {!! Form::label('* Email:',null, ['class' => 'control-label']) !!}
+                        {!! Form::label('* Morada:',null, ['class' => 'control-label']) !!}
                         <div class="controls">
-                            {!! Form::text('email',$user->email,['class' => 'form-horizontal']) !!}
+                            {!! Form::text('morada',$company->morada,['class' => 'form-horizontal']) !!}
                         </div>
                     </div>
                     <div class="control-group">
-                        {!! Form::label('* Contacto:',null, ['class' => 'control-label']) !!}
+                        {!! Form::label('* Codigo Postal:',null, ['class' => 'control-label']) !!}
                         <div class="controls">
-                            {!! Form::text('contact',$user->contact,['class' => 'form-horizontal']) !!}
+                            {!! Form::text('cod_postal',$company->cod_postal,['class' => 'form-horizontal']) !!}
                         </div>
                     </div>
 
                     <div class="control-group">
-                        {!! Form::label('* Número Mecanográfico:',null, ['class' => 'control-label']) !!}
+                        {!! Form::label('* Niff:',null, ['class' => 'control-label']) !!}
                         <div class="controls">
-                            {!! Form::text('number',$user->number,['class' => 'form-horizontal']) !!}
+                            {!! Form::text('nif',$company->nif,['class' => 'form-horizontal']) !!}
                         </div>
                     </div>
-                    @if(Auth::user()->typeuser==1)
                     <div class="control-group">
-                        {!! Form::label('* Tipo de Utilizador:',null, ['class' => 'control-label']) !!}
+                        {!! Form::label('* Activo:',null, ['class' => 'control-label']) !!}
                         <div class="controls">
-                            {!! Form::select('typeuser', $typeu,$user->typeuser,['class' => 'form-horizontal']) !!}
+                            {!! Form::checkbox('activo',$company->activo,null,['class' => 'form-horizontal']) !!}
                         </div>
 
                     </div>
-                    @endif
                     <div class="form-actions">
                         {!! Form::submit('GUARDAR',['class' => 'btn btn-success']) !!}
                     </div>
