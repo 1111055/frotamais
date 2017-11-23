@@ -65,6 +65,7 @@ class UserRequest extends FormRequest
             'number' => request()->number,
             'password' => bcrypt(request()->password),
             'typeuser' => request()->typeuser,
+            'company_id' => request()->company_id,
         ]);
     }
 
