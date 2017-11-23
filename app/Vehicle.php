@@ -33,6 +33,10 @@ class Vehicle extends Model
     {
         return $this->belongsTo('App\User','colaborador');
     }
+    public function company()
+    {
+        return $this->belongsTo('App\Company','company_id');
+    }
 
     public static function getPage()
     {

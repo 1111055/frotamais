@@ -37,10 +37,12 @@ class UserController extends Controller
     public function index()
     {
 
+       $user = Auth::user();
       // $users  = DB::table('users')->paginate(1);
        $users = User::orderBy('name')
            ->where('activo','1')
-           ->where('onchange','0')->paginate(10);
+           ->where('onchange','0')
+           ->where('company_id','=',$user->company_id)->paginate(10);
            
 
     //   dd($users);
@@ -64,9 +66,10 @@ class UserController extends Controller
 
     public function export()
     {
-
+        $user = Auth::user();
         $data = User::select('id', 'name', 'email', 'created_at as criado em','updated_at as actualizado em','contact as contacto','number as numero mecanografico')
             ->where('typeuser', '<>', 1)
+            ->where('company_id','=',$user->company_id)
             ->get();
 
         return Excel::create('utilizadores', function($excel) use ($data) {
@@ -79,8 +82,11 @@ class UserController extends Controller
 
     public function pdf(){
 
+       $user = Auth::user();
+
         $users = User::
             where('typeuser', '<>', 1)
+            ->where('company_id','=',$user->company_id)
             ->get();
 
         $pdf = PDF::loadView('utilizadores.pdf', ['users' => $users] );
@@ -117,20 +123,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-//         $car = Vehicle::all()->where('colaborador','=',$id);
-//         $toarr = $car->toArray();
-//         //$reg = Register::
-//         //where('vehicle_id','=',$toarr->id)->get();
+        $user  = User::find($id);
+        $userc = Auth::user();
 
-        
-//     $arr = '';
-//     foreach ($toarr as $result) {
-//             $arr = $result->id;
-//       }  
-// dd($arr);
-
-        return view('utilizadores.show',compact('user'));
+        if($user->company_id == $userc->company_id){
+           return view('utilizadores.show',compact('user'));
+        }else{
+            return redirect('/errors');
+        }
     }
 
     /**
@@ -141,12 +141,18 @@ class UserController extends Controller
      */
     public function editar($id)
     {
+
         $user  = User::find($id);
-        $type  = TypeUser::all()->where('id','<>',1);
-        $typeu = $type->pluck('typedesc','id');
-        $emp   = Company::all();
-        $company = $emp->pluck('nome','id');
-        return view('utilizadores.edit',compact('user','typeu','company'));
+        $userc = Auth::user();
+        if($user->company_id == $userc->company_id){
+            $type  = TypeUser::all()->where('id','<>',1);
+            $typeu = $type->pluck('typedesc','id');
+            $emp   = Company::all();
+            $company = $emp->pluck('nome','id');
+            return view('utilizadores.edit',compact('user','typeu','company'));
+        }else{
+            return redirect('/errors');
+        }
     }
 
     /**
