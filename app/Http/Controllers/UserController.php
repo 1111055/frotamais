@@ -14,7 +14,6 @@ use PDF;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
 use Illuminate\Support\Facades\Auth;
 
 
@@ -103,10 +102,9 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-       $user = Auth::user();
-
+        $user = Auth::user();
         $idcompany = $user->company_id;
-        //dd($request->all());
+
         $request->persist($idcompany);
 
         return redirect()->route('users.index')->with('sucess','Colaborador criado com sucesso.');

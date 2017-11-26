@@ -8,6 +8,9 @@ use App\User;
 use Excel;
 use Input;
 use PDF;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+
 class AlertController extends Controller
 {
 
@@ -25,16 +28,20 @@ class AlertController extends Controller
      */
     public function index()
     {
+         $user = Auth::user();
+
         $alert = Alert::
                 orderBy('colaborador','asc')
-                ->where('estado','=',0)->paginate(5);
+                ->where('estado','=',0)
+                ->where('company_id','=',$user->company_id)->paginate(5);
 
         $alertt = Alert::
                 orderBy('colaborador','asc')
-                ->where('estado','=',1)->paginate(5);
+                ->where('estado','=',1)
+                ->where('company_id','=',$user->company_id)->paginate(5);
          //dd($alert);           
          //dd($alert);           
-        $user  = User::all();
+        $user  = User::where('company_id','=',$user->company_id)->get();
         $colaborador = $user->pluck('name','id');
 
         return view('alertas.index', compact('alert','alertt','colaborador'));
@@ -47,7 +54,9 @@ class AlertController extends Controller
      */
     public function create()
     {
-        $user  = User::all();
+        $user = Auth::user();
+
+        $user  = User::where('company_id','=',$user->company_id)->get();
         $colaborador = $user->pluck('name','id');
         return view('alertas.create',compact('colaborador'));
     }
@@ -60,8 +69,10 @@ class AlertController extends Controller
      */
     public function store(AlertRequest $request)
     {
+
+         $user = Auth::user();
     
-        $request->persist();
+        $request->persist($user->company_id);
 
         return redirect()->route('alerts.index')->with('sucess','Alerta criado com sucesso.');
 
@@ -89,8 +100,10 @@ class AlertController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user();
+
         $alert = Alert::find($id);
-        $user  = User::all();
+        $user  = User::where('company_id','=',$user->company_id)->get();
         $colaborador = $user->pluck('name','id');
 
         return view('alertas.edit', compact('alert','colaborador'));
@@ -135,8 +148,10 @@ class AlertController extends Controller
     public function exportactivos()
     {
 
+    $user = Auth::user();
     $data = Alert::select('id', 'colaborador', 'mensage', 'created_at as criado em','date as data')
             ->where('estado', '=', 0)
+            ->where('company_id','=',$user->company_id)
             ->get();
 
         return Excel::create('alertas_activos', function($excel) use ($data) {
@@ -151,6 +166,7 @@ class AlertController extends Controller
 
     $data = Alert::select('id', 'colaborador', 'mensage', 'created_at as criado em','date as fechado em')
             ->where('estado', '=', 1)
+            ->where('company_id','=',$user->company_id)
             ->get();
 
         return Excel::create('alertas_abertos', function($excel) use ($data) {
@@ -166,6 +182,7 @@ class AlertController extends Controller
 
         $alert = Alert::
             where('estado', '=', $estado)
+            ->where('company_id','=',$user->company_id)
             ->get();
 
         $pdf = PDF::loadView('alertas.pdf', ['alert' => $alert] );

@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <div class="control-group">
-                            {!! Form::label('* Preco:',null, ['class' => 'control-label']) !!}
+                            {!! Form::label('* Valor:',null, ['class' => 'control-label']) !!}
                             <div class="controls">
                                 {!! Form::text('preco',null,['class' => 'form-horizontal']) !!}
                             </div>

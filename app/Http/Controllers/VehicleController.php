@@ -11,6 +11,8 @@ use Input;
 use PDF;
 use Carbon\Carbon;
 use App\Http\Requests\VehicleRequest;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 
 class VehicleController extends Controller
@@ -47,9 +49,11 @@ class VehicleController extends Controller
      */
     public function create()
     {
+        $user = Auth::user();
+        $idcompany = $user->company_id;
 
       
-        $user  = User::orderBy('name');
+        $user  = User::where('typeuser','!=','1')->where('company_id','=',$idcompany)->orderBy('name');
         $colaborador = $user->pluck('name','id');
         return view('vehicles.create', compact('colaborador'));
 
@@ -63,8 +67,10 @@ class VehicleController extends Controller
      */
     public function store(VehicleRequest $request)
     {
+        $user = Auth::user();
+        $idcompany = $user->company_id;
 
-        $request->persist();
+        $request->persist($idcompany);
 
         return redirect()->route('vehicles.index')->with('sucess','Veículo criado com sucesso.');
 

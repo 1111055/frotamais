@@ -9,6 +9,8 @@ use App\ExpenseType;
 use Illuminate\Http\Request;
 use app\User;
 use Carbon\Carbon;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -30,17 +32,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-
+        $user = Auth::user();
+        $idcompany = $user->company_id;
  
          
-        $vehicle = Vehicle::all();       
-        $expense = ExpenseType::all();
+        $vehicle = Vehicle::where('company_id','=',$idcompany)->get();       
+        $expense = ExpenseType::get();
       
 
         // cont    
-        $totaluser = User::where('id','!=','1')->count();
+        $totaluser = User::where('company_id','=',$idcompany)->count();
         $totalcar = $vehicle->count();
-        $totalalert = Alert::count();
+        $totalalert = Alert::where('company_id','=',$idcompany)->count();
 
 
         $teste =  Register::carsValues();
@@ -48,6 +51,7 @@ class HomeController extends Controller
         $al = Alert::
                 orderBy('created_at','asc')
                 ->where('created_at','>',Carbon::now())
+                ->where('company_id','=',$idcompany)
                 ->take(5)
                 ->get();   
 
@@ -80,7 +84,7 @@ class HomeController extends Controller
         }
         
 
-
+     
 
 
         return view('admin.dashboard', compact('totaluser','totalcar','totalalert','val','valtype','al'));

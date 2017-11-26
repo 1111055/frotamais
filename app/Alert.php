@@ -10,7 +10,7 @@ use Carbon\Carbon;
 class Alert extends Model
 {
     protected $fillable = [
-        'colaborador', 'mensage', 'date',
+        'colaborador', 'mensage', 'date','company_id'
     ];
     
       /**

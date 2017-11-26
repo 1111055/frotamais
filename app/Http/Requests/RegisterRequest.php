@@ -43,13 +43,21 @@ class RegisterRequest extends FormRequest
         ];
     }
 
-    public function persist()
+    public function persist($idcompany)
     {
 
 
-        Register::create(
-            request()->all()
+       // dd(request()->all());
 
-        );
+        Register::create([
+            'vehicle_id'    => request()->vehicle_id,
+            'kms'           => request()->kms,
+            'type_id'       => request()->type_id,
+            'preco'         => request()->preco,
+            'litros'        => request()->litros,
+            'dataregisto'   => request()->dataregisto,
+            'company_id'    => $idcompany,
+
+        ]);
     }
 }

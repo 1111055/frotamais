@@ -5,11 +5,13 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class Register extends Model
 {
     protected $fillable = [
-        'vehicle_id', 'kms', 'type_id','preco','litros'
+        'vehicle_id', 'kms', 'type_id','preco','litros','company_id'
     ];
 
     /**
@@ -29,8 +31,13 @@ class Register extends Model
 
     public static function carsValues()
     {
+
+        $user = Auth::user();
+        $idcompany = $user->company_id;
+
         $userst = DB::table('registers')
             ->select(DB::raw('sum(preco) as preco, vehicle_id'))
+             ->where('company_id','=',$idcompany)
             ->groupBy('vehicle_id')
             ->orderBy('preco','DESC')
             ->get();
@@ -40,8 +47,13 @@ class Register extends Model
 
     public static function expensesValues()
     {
+        $user = Auth::user();
+        $idcompany = $user->company_id;
+
+
         $valty = DB::table('registers')
             ->select(DB::raw('sum(preco) as preco, type_id'))
+            ->where('company_id','=',$idcompany)
             ->groupBy('type_id')
             ->orderBy('preco','DESC')
             ->get();
@@ -52,12 +64,15 @@ class Register extends Model
         public static function expenseByCarYear($id)
     {
 
+        $user = Auth::user();
+        $idcompany = $user->company_id;
 
         $meses = array('Meses', 'Jan', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez');
 
         $valty = DB::table('registers')
             ->select(\DB::raw('DATE_FORMAT(dataregisto, "%m") as month, sum(preco) as preco, type_id'))
             ->where('vehicle_id','=',$id)
+            ->where('company_id','=',$idcompany)
             ->groupBy('month','type_id')
             ->orderBy('preco','DESC')
             ->get();
@@ -144,13 +159,15 @@ class Register extends Model
 
     public static function expenseAVGforMonth($id)
     {
-
+        $user = Auth::user();
+        $idcompany = $user->company_id;
 
         $meses = array('Meses', 'Jan', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez');
 
         $valty = DB::table('registers')
             ->select(\DB::raw('DATE_FORMAT(dataregisto, "%m") as month, sum(litros) as litros'))
             ->where('vehicle_id','=',$id)
+            ->where('company_id','=',$idcompany)
             ->where('type_id','=','2')
             ->groupBy('month')
             ->get();
@@ -182,6 +199,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '01')
                     ->get()->first();
 
@@ -189,6 +207,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '01')
                     ->get()->last();
 
@@ -204,6 +223,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '02')
                     ->get()->first();
 
@@ -211,6 +231,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '02')
                     ->get()->last();
 
@@ -225,6 +246,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '03')
                     ->get()->first();
 
@@ -232,6 +254,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '03')
                     ->get()->last();
 
@@ -246,6 +269,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '04')
                     ->get()->first();
 
@@ -253,6 +277,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '04')
                     ->get()->last();
 
@@ -267,6 +292,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '05')
                     ->get()->first();
 
@@ -274,6 +300,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '05')
                     ->get()->last();
 
@@ -288,6 +315,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '06')
                     ->get()->first();
 
@@ -295,6 +323,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '06')
                     ->get()->last();
 
@@ -309,6 +338,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '07')
                     ->get()->first();
 
@@ -316,6 +346,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '07')
                     ->get()->last();
 
@@ -329,6 +360,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '08')
                     ->get()->first();
 
@@ -336,6 +368,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '08')
                     ->get()->last();
 
@@ -350,6 +383,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '09')
                     ->get()->first();
 
@@ -357,6 +391,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '09')
                     ->get()->last();
 
@@ -371,6 +406,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '10')
                     ->get()->first();
 
@@ -378,6 +414,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '10')
                     ->get()->last();
 
@@ -392,6 +429,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '11')
                     ->get()->first();
 
@@ -399,6 +437,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '11')
                     ->get()->last();
 
@@ -413,6 +452,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '12')
                     ->get()->first();
 
@@ -420,6 +460,7 @@ class Register extends Model
                     ->select(\DB::raw('kms'))
                     ->where('vehicle_id','=',$id)
                     ->where('type_id','=','2')
+                    ->where('company_id','=',$idcompany)
                     ->whereMonth('dataregisto', '=', '12')
                     ->get()->last();
 
@@ -455,9 +496,14 @@ class Register extends Model
 
     public static function valuesAvg($id, $months = 12) {
 
+        $user = Auth::user();
+        $idcompany = $user->company_id;
+
+
         $valty = DB::table('registers')
             ->select(\DB::raw('DATE_FORMAT(dataregisto, "%m") as month, sum(preco) as preco, type_id'))
             ->where('vehicle_id','=',$id)
+            ->where('company_id','=',$idcompany)
             ->groupBy('month','type_id')
             ->get();
         $t1 = $valty->toArray();

@@ -37,22 +37,23 @@ class VehicleRequest extends FormRequest
     public function messages()
     {
         return [
-
-            //'marca.required'  => 'okkkkkkkkkkkkkkkkkkkkkkkkk olha a marca!',
-           // 'modelo.email' => 'ERRO EMAIL',
-            //
-
             'required' => "ERRO: Falta preencher :attribute"
         ];
     }
 
-    public function persist(){
+    public function persist($idcompany){
 
 
-        Vehicle::create(
-            request()->all()
-            //$this->only(['marca','modelo','matricula','dataregisto','kms'])
+        Vehicle::create([
+            'marca'         => request()->marca,
+            'modelo'        => request()->modelo,
+            'matricula'     => request()->matricula,
+            'dataregisto'   => request()->dataregisto,
+            'kms'           => request()->kms,
+            'colaborador'   => request()->colaborador,
+            'company_id'    => $idcompany,
 
-        );
+        ]);
+
     }
 }

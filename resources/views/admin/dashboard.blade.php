@@ -21,18 +21,17 @@
             
             </div>
 
-           @if(!$val['1'] == 0)
+        
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
-                    <h5>Controlo de todo o custo por carro.</h5>
+                    <h5>Custo total por veículo.</h5>
                 </div>
                 <div class="widget-content">
                     <td><div id="Sarah_chart_div" style="border: 1px solid #ccc"></div></td>
 
                 </div>
             </div>
-            @endif
-            @if(!$valtype['1'] == 0)
+
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
                     <h5>Custo total por despesa.</h5>
@@ -41,7 +40,7 @@
                     <td><div id="Anthony_chart_div" style="border: 1px solid #ccc"></div></td>
                 </div>
             </div>
-            @endif
+
         </div>
 
 
@@ -53,7 +52,7 @@
                                         <li class="bg_lh"><i class="icon icon-user"></i> <strong>{{ $totaluser  }}</strong> <small>Total Utilizadores</small></li>
                                         <li class="bg_lh"><i class="icon-truck"></i> <strong>{{ $totalcar  }}</strong> <small>Total de Veículos</small></li>
                                         <li class="bg_lh"><i class="icon-bell"></i> <strong>{{ $totalalert  }}</strong> <small>Total Alertas Activos</small></li>
-                                        <li class="bg_lh"><i class="icon icon-cog"></i> <strong>{{ $totalalert  }}</strong> <small>Total Alertas Resolvidos</small></li>
+                                        <li class="bg_lh"><i class="icon icon-bell"></i> <strong>{{ $totalalert  }}</strong> <small>Total Alertas Resolvidos</small></li>
                                       </ul>
                              </div>
 

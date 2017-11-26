@@ -12,8 +12,7 @@
 
     </head>
     <body>
-        <div id="loginbox"> 
-  
+        <div id="loginbox" style="float: left;margin-left: 10%;"> 
 
                 <form role="form" method="POST" action="{{ route('login') }}" id="loginform" class="form-vertical" >
 
@@ -61,6 +60,44 @@
 
 
              </div>
+    <body>
+        <div id="loginbox" style="float: left;margin-left: 10%;"> 
+
+                <form role="form" method="POST" action="{{ route('login') }}" id="loginform" class="form-vertical" >
+
+                    {{ csrf_field() }}
+                 <div class="control-group normal_text"> <h3><img src="img/logo.png" alt="Logo" /></h3></div>
+
+
+                        <div class="controls">
+                         <div class="main_input_box">
+                              <form class="signup" action="index.html" method="post">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="Nome">
+                                </div>
+                                 <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="Empresa">
+                                </div>
+                                <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="Nif">
+                                </div>
+                                <div class="form-group">
+                                <input type="submit" class="btn btn-success btn-block"  value="Enviar pedido de registo">
+                                </div>
+                              </form>
+                         </div>
+                        </div>
+             
+
+                </div>
+                </form>
+
+
+             </div>
+
 
     </body>
 

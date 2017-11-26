@@ -18,16 +18,9 @@ class Vehicle extends Model
      * @var array
      */
     protected $fillable = [
-        'marca', 'modelo', 'matricula','dataregisto', 'kms','colaborador'
+        'marca', 'modelo', 'matricula','dataregisto', 'kms','colaborador','company_id'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
- //    * @var array
-     */
- //   protected $hidden = [
- //       'password', 'remember_token',
 
     public function user()
     {

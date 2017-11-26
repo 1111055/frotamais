@@ -9,6 +9,10 @@ use App\Vehicle;
 use Excel;
 use Input;
 use PDF;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+
+
 class RegisterController extends Controller
 {
     public function __construct()
@@ -26,11 +30,14 @@ class RegisterController extends Controller
     public function index()
     {
 
+        $user = Auth::user();
+
         if(request()->has('type')){
-            $register = Register::orderBy('vehicle_id','dataregisto')->where('type_id',request('type'))->paginate(10)->appends('type_id',request('type'));
+            $register = Register::orderBy('vehicle_id','dataregisto')->where('company_id','=',$user->company_id)->where('type_id',request('type'))->paginate(10)->appends('type_id',request('type'));
         }else{
-            $register = Register::orderBy('vehicle_id')->paginate(10);
+            $register = Register::where('company_id','=',$user->company_id)->orderBy('vehicle_id')->paginate(10);
         }   
+
         $expense  = ExpenseType::all();
         $expense = $expense->pluck('typedesc','id');
         $vehicle  = Vehicle::all();
@@ -62,13 +69,13 @@ class RegisterController extends Controller
      */
     public function store(RegisterRequest $request)
     {
+        $user = Auth::user();
+        $idcompany = $user->company_id;
 
-        $request->persist();
+        $request->persist($idcompany);
 
         $ve = Vehicle::find($request->vehicle_id);
-
         $ve->kms = $request->kms;
-
         $ve->save();
 
 

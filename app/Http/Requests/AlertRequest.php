@@ -46,11 +46,15 @@ class AlertRequest extends FormRequest
         ];
     }
     
-    public function persist(){
+    public function persist($idcompany){
 
+        Alert::create([
+            'colaborador'  => request()->colaborador,
+            'mensage'      => request()->mensage,
+            'date'         => request()->date,
+            'estado'       => request()->estado,
+            'company_id'   => $idcompany,
 
-        Alert::create(
-            request(['colaborador','mensage','date'])
-        );
+        ]);
     }
 }
