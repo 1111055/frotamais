@@ -40,7 +40,7 @@ class emailAlert extends Command
      */
     public function handle()
     {
-          Mail::to('marcomendes0202@hotmail.com')->send(new SendAlertMail());
+          Mail::to('marco.mendes@frotamais.com')->send(new SendAlertMail());
           //  return redirect('/home');
     }
 }
