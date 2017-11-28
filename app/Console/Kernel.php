@@ -30,11 +30,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 	
-       //  $schedule->command('alert:email');
+         $schedule->command('alert:email');
 		 
-		 $schedule->call(function () {
+		/* $schedule->call(function () {
              Mail::to('marcomendes0202@hotmail.com')->send(new SendAlertMail());
-        });
+        }); */
 
     }
 
