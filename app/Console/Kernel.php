@@ -13,8 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-            'App\Console\Commands\emailAlert'
-        //
+            \App\Console\Commands\emailAlert::class,
+        
     ];
 
     /**
@@ -25,10 +25,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
-         $schedule->command('alert:email');
-                 // ->everyMinute();
+	
+       //  $schedule->command('alert:email');
+		 
+		 $schedule->call(function () {
+             Mail::to('marcomendes0202@hotmail.com')->send(new SendAlertMail());
+        });
+
     }
 
     /**
