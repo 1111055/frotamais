@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
             \App\Console\Commands\emailAlert::class,
+            \App\Console\Commands\emailMarketing::class,
         
     ];
 
@@ -27,6 +28,7 @@ class Kernel extends ConsoleKernel
     {
 	
          $schedule->command('alert:email');
+         $schedule->command('marketing:email');
 		 
     }
 

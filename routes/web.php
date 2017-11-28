@@ -10,8 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Mail\Markdown;
 
+Route::get('home/mail', function () {
+    $markdown = new Markdown(view(), config('mail.markdown'));
 
+    return $markdown->render('emails.marketing');
+});
 
 Auth::routes();
 
