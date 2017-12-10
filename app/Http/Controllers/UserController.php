@@ -175,9 +175,15 @@ class UserController extends Controller
         $user->contact=$request->contact;
         $user->number=$request->number;
         $user->email=$request->email;
-        $user->typeuser=$request->typeuser;
-        $user->company_id = $request->company_id;
-        $user->password = bcrypt($request->password);   
+        if($request->typeuser != ''){
+             $user->typeuser=$request->typeuser;
+        }
+        if($request->company_id != '' ){
+            $user->company_id = $request->company_id;
+        }
+        if($request->password != '' ){
+            $user->password = bcrypt($request->password);   
+        }
 
         $user->save();
 

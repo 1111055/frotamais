@@ -45,19 +45,19 @@
                     </div>
 
                     <div class="control-group">
-                        {!! Form::label('* Número Mecanográfico:',null, ['class' => 'control-label']) !!}
+                        {!! Form::label(' Número Mecanográfico:',null, ['class' => 'control-label']) !!}
                         <div class="controls">
                             {!! Form::text('number',$user->number,['class' => 'form-horizontal']) !!}
                         </div>
                     </div>
                     <div class="control-group">
-                                {!! Form::label('* Password:',null, ['class' => 'control-label']) !!}
+                                {!! Form::label(' Password:',null, ['class' => 'control-label']) !!}
                                 <div class="controls">
                                     {!! Form::password('password',null,['class' => 'form-horizontal']) !!}
                                 </div>
                             </div>
                             <div class="control-group">
-                                {!! Form::label('* Confirme Password:',null, ['class' => 'control-label']) !!}
+                                {!! Form::label(' Confirme Password:',null, ['class' => 'control-label']) !!}
                                 <div class="controls">
                                     {!! Form::password('password_confirmation',null,['class' => 'form-horizontal']) !!}
                                 </div>
