@@ -32,7 +32,6 @@ class UserRequest extends FormRequest
             'number' => 'required',
             'password' => 'required|confirmed|min:6',
             'password_confirmation' => 'required',
-            'typeuser' => 'required',
 
         ];
 

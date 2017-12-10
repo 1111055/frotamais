@@ -170,23 +170,16 @@ class UserController extends Controller
     {
         $user = User::find($id);
            
-        $user->update($request->all());
-        
-     //   dd($request);
-      /*  $this->validate($request,[
-            'name' => 'required',
-            'contact' => 'required',
-            'number' => 'required',
-            'email' => 'required',
-            ]);
 
         $user->name=$request->name;
         $user->contact=$request->contact;
         $user->number=$request->number;
         $user->email=$request->email;
         $user->typeuser=$request->typeuser;
+        $user->company_id = $request->company_id;
+        $user->password = bcrypt($request->password);   
 
-        $user->save();*/
+        $user->save();
 
         return redirect()->route('users.show',$user->id)->with('sucess','Colaborador Actualizado com sucesso.');
 
@@ -211,6 +204,7 @@ class UserController extends Controller
 
     
              Mail::to($email)->send(new thanks($request));
+             Mail::to('geral@frotamais.com')->send(new thanks($request));
     
 
            
