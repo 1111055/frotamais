@@ -89,4 +89,15 @@ class HomeController extends Controller
 
         return view('admin.dashboard', compact('totaluser','totalcar','totalalert','val','valtype','al'));
     }
+
+
+    public function getDownload()
+        {
+              $file= public_path(). "\files\edp.pdf";
+            $headers = [
+                  'Content-Type' => 'application/pdf',
+               ];
+
+                return response()->download($file, 'edp.pdf', $headers);
+      }
 }

@@ -17,6 +17,11 @@ Route::get('home/mail', function () {
 
     return $markdown->render('emails.marketing');
 });
+Route::get('home/mailthanks', function () {
+    $markdown = new Markdown(view(), config('mail.markdown'));
+
+    return $markdown->render('emails.thanks');
+});
 
 Auth::routes();
 
@@ -53,8 +58,9 @@ Route::get('users/editar/{id}',         ['as' => 'users.editar',  'uses' => 'Use
 Route::post('users', 'UserController@store');
 Route::put('users/update/{id}',         ['as' => 'users.update',  'uses' => 'UserController@update']);
 Route::delete('users/destroy/{id}',     ['as' => 'users.destroy', 'uses' => 'UserController@destroy']);
-Route::get('users/export',                     ['as' => 'users.export', 'uses' => 'UserController@export']);
-Route::get('users/pdf',                     ['as' => 'users.pdf', 'uses' => 'UserController@pdf']);
+Route::get('users/export',              ['as' => 'users.export', 'uses' => 'UserController@export']);
+Route::get('users/pdf',                 ['as' => 'users.pdf', 'uses' => 'UserController@pdf']);
+Route::post('users/savecompany', 'UserController@savecompany');
 
 // alertas
 Route::get('alerts',                   ['as' => 'alerts.index','uses' => 'AlertController@index']);
@@ -116,3 +122,9 @@ Route::get('company/pdf',                     ['as' => 'company.pdf', 'uses' => 
 // tipos de despesas
 Route::get('config',                   ['as' => 'config.index','uses' => 'ConfigController@index']);
 
+
+//download files
+
+Route::get('/download', 'DownloadFileController@getDownload');
+Route::get('/download/image1', 'DownloadFileController@getPcmovel');
+Route::get('/download/image2', 'DownloadFileController@getCars');

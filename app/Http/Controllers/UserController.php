@@ -8,6 +8,7 @@ use App\Vehicle;
 use App\TypeUser;
 use App\Register;
 use App\Company;
+use App\RegisterCompany;
 use Excel;
 use Input;
 use PDF;
@@ -16,6 +17,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 
+use Mail;
+use App\Mail\marketing;
+use App\Mail\SendAlertMail;
+use App\Mail\thanks;
+
 
 class UserController extends Controller
 {
@@ -23,9 +29,9 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['savecompany']]);
        // $this->middleware('admin');
-        $this->middleware('colaborador');
+        $this->middleware('colaborador', ['except' => ['savecompany']]);
     }
 
     /**
@@ -160,11 +166,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
         $user = User::find($id);
+           
+        $user->update($request->all());
+        
      //   dd($request);
-        $this->validate($request,[
+      /*  $this->validate($request,[
             'name' => 'required',
             'contact' => 'required',
             'number' => 'required',
@@ -175,9 +184,9 @@ class UserController extends Controller
         $user->contact=$request->contact;
         $user->number=$request->number;
         $user->email=$request->email;
-       $user->typeuser=$request->typeuser;
+        $user->typeuser=$request->typeuser;
 
-        $user->save();
+        $user->save();*/
 
         return redirect()->route('users.show',$user->id)->with('sucess','Colaborador Actualizado com sucesso.');
 
@@ -194,5 +203,24 @@ class UserController extends Controller
         User::destroy($id);
 
         return redirect()->route('users.index')->with('sucess','colaborador removido com sucesso!');
+    }
+
+    public function savecompany(Request $request){
+
+            $email =  $request['email_user'];
+
+    
+             Mail::to($email)->send(new thanks($request));
+    
+
+           
+
+            RegisterCompany::create(
+            request(['name_user','email_user','name_empresa','nif'])
+             );
+
+           
+        return redirect()->route('login')->with('sucess','Colaborador Actualizado com sucesso.');   
+
     }
 }

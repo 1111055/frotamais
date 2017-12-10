@@ -50,6 +50,18 @@
                             {!! Form::text('number',$user->number,['class' => 'form-horizontal']) !!}
                         </div>
                     </div>
+                    <div class="control-group">
+                                {!! Form::label('* Password:',null, ['class' => 'control-label']) !!}
+                                <div class="controls">
+                                    {!! Form::password('password',null,['class' => 'form-horizontal']) !!}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                {!! Form::label('* Confirme Password:',null, ['class' => 'control-label']) !!}
+                                <div class="controls">
+                                    {!! Form::password('password_confirmation',null,['class' => 'form-horizontal']) !!}
+                                </div>
+                    </div>
                     @if(Auth::user()->typeuser==1)
                     <div class="control-group">
                         {!! Form::label('* Tipo de Utilizador:',null, ['class' => 'control-label']) !!}

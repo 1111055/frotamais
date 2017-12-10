@@ -57,54 +57,78 @@
                                     </span>
                                 @endif
 
-                                </div>
-                             </div>
-                             <span class="pull-left">
-                                 <button type="submit" class="btn btn-primary">
+
+                                 <button type="submit" class="btn btn-primary" style="width: 38%">
                                     Login
                                   </button>
-                                    <a href="{{ route('password.request') }}" class="flip-link btn btn-info" id="to-recover">Recuperar Password</a>
-                                </span>
+                                    <a href="{{ route('password.request') }}" class="btn btn-info" id="to-recover" style="
+    width: 45%;">Recuperar Password </a>
+
+
+                              </div>
+                             </div>
                          </div>
                     </form>
 
 
              </div>
-    <body>
-        <div id="loginbox" style="float: left;margin-left: 10%;"> 
+  
 
-                <form role="form" method="POST" action="{{ route('login') }}" id="loginform" class="form-vertical" >
+                <div id="loginbox" style="float: left;margin-left: 10%; display: block; margin-top: 14%;"> 
 
-                    {{ csrf_field() }}
-                 <div class="control-group normal_text"> <h3><img src="img/logo.png" alt="Logo" /></h3></div>
+                        <form role="form" method="POST" action="/users/savecompany"  class="form-vertical" >
+
+                            {{ csrf_field() }}
 
 
-                        <div class="controls">
-                         <div class="main_input_box">
-                              <form class="signup" action="index.html" method="post">
-                                <div class="form-group">
-                                  <input type="text" class="form-control" placeholder="Nome">
+                                <div class="controls">
+                                 <div class="main_input_box">
+                                      <form class="signup" action="index.html" method="post">
+                                        <div class="form-group">
+                                          <input type="text" class="form-control" name="name_user" placeholder="Nome">
+                                        </div>
+                                         <div class="form-group">
+                                          <input type="text" class="form-control" name="email_user" placeholder="Email">
+                                        </div>
+                                        <div class="form-group">
+                                          <input type="text" class="form-control" name="name_empresa" placeholder="Empresa">
+                                        </div>
+                                        <div class="form-group">
+                                          <input type="text" class="form-control" name="nif" placeholder="Nif">
+                                        </div>
+                                        <div class="form-group">
+                                        <input type="submit" class="btn btn-success btn-block"  value="Enviar pedido de registo">
+                                        </div>
+                                      </form>
+                                 </div>
                                 </div>
-                                 <div class="form-group">
-                                  <input type="text" class="form-control" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                  <input type="text" class="form-control" placeholder="Empresa">
-                                </div>
-                                <div class="form-group">
-                                  <input type="text" class="form-control" placeholder="Nif">
-                                </div>
-                                <div class="form-group">
-                                <input type="submit" class="btn btn-success btn-block"  value="Enviar pedido de registo">
-                                </div>
-                              </form>
-                         </div>
-                        </div>
-             
+                     
+                        </form>
+                 </div>
 
-                </div>
-                </form>
+             </div>
 
+
+              <div id="loginbox" style="float: left;margin-left: 10%; display: none;margin-top: 10%;"> 
+
+                    
+
+
+                                <div class="controls">
+                                 <div class="main_input_box">
+                                      <div class="control-group normal_text"> <h3><img src="img/sucess.png" alt="Logo" style="max-width: 40px; max-height: 40px;" /></h3></div>
+                                        <div class="form-group"  style="color: #fff; ">
+                                          Submetido com sucesso. 
+                                        </div>
+
+                                       <div class="form-group"  style="color: #fff; ">
+                                          O mais brevemente possivel receberá um email com os acessos. <br>
+                                          Obrigado!
+                                        </div>
+                                 </div>
+                                </div>
+                
+                 </div>
 
              </div>
 
