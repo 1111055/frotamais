@@ -2,6 +2,25 @@
     <title>Frota +</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Frota+">
+    <meta name="generator" content="Frota+ | Gestão personalizada automóvel">
+    <meta name="rating" content="general">
+    <meta name="distribution" content="global">
+    <meta name="expires" content="never">
+    <meta name="Cache-Control" content="private">
+    <meta name="revisit-after" content="3 days">
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <meta charset="utf-8">
+    <meta name="Description" content="Frota Mais , gestão de veículos.">
+    <meta name="Keywords" content="carros, veículos, consumos, disel, gasolina, inspecções , impostos, alertas, gestão.">
+
+
+    <meta property="og:url" content="https://www.frotamais.com" />
+    <meta property="og:title" content="Frota+ | Gestão personalizada automóvel" />
+    <meta property="og:image" content="" />
+    <meta property="og:description" content="carros, veículos, consumos, disel, gasolina, inspecções , impostos, alertas, gestão." />
+
+
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/bootstrap-responsive.min.css')}}" />
 
