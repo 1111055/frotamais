@@ -37,100 +37,68 @@
 		  gtag('config', 'UA-110417853-1');
 		</script>
 
+        <script>
+        // rename myToken as you like
+        window.Laravel =  <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+        </script>
+
 
     </head>
     <body>
         <div id="loginbox" style="float: left;margin-left: 10%;"> 
-
                 <form role="form" method="POST" action="{{ route('login') }}" id="loginform" class="form-vertical" >
-
                     {{ csrf_field() }}
                  <div class="control-group normal_text"> <h3><img src="img/logo.png" alt="Logo" /></h3></div>
                     <div class="control-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                          <div class="controls">
+                           <div class="main_input_box">
+                             <span class="add-on bg_lg"><i class="icon-user"></i></span>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="Username">
 
-                        <div class="controls">
-                         <div class="main_input_box">
-                         <span class="add-on bg_lg"><i class="icon-user"></i></span>
-                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="Username">
-
-                            @if ($errors->has('email'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                            @endif
-                            </div>
-                        </div>
-                    </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                             <div class="controls">
-                               <div class="main_input_box">
-
-                                <span class="add-on bg_ly"><i class="icon-lock"></i></span>
-                                <input id="password" type="password" class="form-control" name="password" required placeholder="Password">
-
-                                @if ($errors->has('password'))
+                                @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-
-
-                                 <button type="submit" class="btn btn-primary" style="width: 38%">
-                                    Login
-                                  </button>
-                                    <a href="{{ route('password.request') }}" class="btn btn-info" id="to-recover" style="
-    width: 45%;">Recuperar Password </a>
-
-
-                              </div>
                              </div>
+                          </div>
+                    </div>
+                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                         <div class="controls">
+                           <div class="main_input_box">
+
+                            <span class="add-on bg_ly"><i class="icon-lock"></i></span>
+                            <input id="password" type="password" class="form-control" name="password" required placeholder="Password">
+
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                            @endif
+
+
+                             <button type="submit" class="btn btn-primary" style="width: 38%">
+                                Login
+                              </button>
+                                <a href="{{ route('password.request') }}" class="btn btn-info" id="to-recover" style="
+width: 45%;">Recuperar Password </a>
+
+
+                          </div>
                          </div>
+                     </div>
                     </form>
-
-
-             </div>
-  
-
-                <div id="loginbox" style="float: left;margin-left: 10%; display: block; margin-top: 14%;"> 
-
-                        <form role="form" method="POST" action="/users/savecompany"  class="form-vertical" >
-
-                            {{ csrf_field() }}
-
-
-                                <div class="controls">
-                                 <div class="main_input_box">
-                                      <form class="signup" action="index.html" method="post">
-                                        <div class="form-group">
-                                          <input type="text" class="form-control" name="name_user" placeholder="Nome">
-                                        </div>
-                                         <div class="form-group">
-                                          <input type="text" class="form-control" name="email_user" placeholder="Email">
-                                        </div>
-                                        <div class="form-group">
-                                          <input type="text" class="form-control" name="name_empresa" placeholder="Empresa">
-                                        </div>
-                                        <div class="form-group">
-                                          <input type="text" class="form-control" name="nif" placeholder="Nif">
-                                        </div>
-                                        <div class="form-group">
-                                        <input type="submit" class="btn btn-success btn-block"  value="Enviar pedido de registo">
-                                        </div>
-                                      </form>
-                                 </div>
-                                </div>
-                     
-                        </form>
-                 </div>
-
              </div>
 
+        <div id="loginbox" class="companyregister" style="float: left;margin-left: 10%; display: block;"> 
 
-              <div id="loginbox" style="float: left;margin-left: 10%; display: none;margin-top: 10%;"> 
-
-                    
-
+             <div id="app">
+                <company></company>
+             </div>
+        </div>
+              <div id="loginbox" class="sucessmsg" style="float: left;margin-left: 10%; display: none;margin-top: 10%;"> 
 
                                 <div class="controls">
                                  <div class="main_input_box">
@@ -148,10 +116,8 @@
                 
                  </div>
 
-             </div>
-
-
     </body>
 
 </html>
 
+     <script src="{{asset('js/app.js')}}"></script>

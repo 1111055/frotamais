@@ -18,7 +18,7 @@
     export default {
         mounted() {
             console.log('Component mounted.');
-            axios.get('asdad')
+           
         }
     }
 </script>

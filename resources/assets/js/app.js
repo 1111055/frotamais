@@ -5,9 +5,21 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+
 require('./bootstrap');
 
 window.Vue = require('vue');
+
+window.VueAxios=require('vue-axios').default;
+
+window.Axios=require('axios').default;
+window.VueRouter=require('vue-router').default;
+
+import VeeValidate from 'vee-validate';
+
+Vue.use(VeeValidate);
+
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -16,7 +28,12 @@ window.Vue = require('vue');
  */
 
 Vue.component('example', require('./components/Example.vue'));
+Vue.component('company', require('./components/company.vue'));
+Vue.component('login', require('./components/login.vue'));
+
 
 const app = new Vue({
     el: '#app'
 });
+
+Vue.config.devtools = true;

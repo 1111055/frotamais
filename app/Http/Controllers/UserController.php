@@ -220,7 +220,7 @@ class UserController extends Controller
              );
 
            
-        return redirect()->route('login')->with('sucess','Colaborador Actualizado com sucesso.');   
+             return response()->json(1);
 
     }
 }

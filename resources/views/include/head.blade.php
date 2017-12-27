@@ -54,5 +54,14 @@
 	  gtag('config', 'UA-110417853-1');
 	</script>
 
+    
+        <script>
+        // rename myToken as you like
+        window.Laravel =  <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+        </script>
+
+
 
 </head>

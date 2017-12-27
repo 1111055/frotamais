@@ -2,7 +2,29 @@
 
 @section('content')
 
+<style>
 
+.time-frame {
+    background-color: #000000;
+    color: #ffffff;
+    width: 300px;
+    font-family: Arial;
+}
+
+.time-frame > div {
+    width: 100%;
+    text-align: center;
+}
+
+</style>
+    <div class="row-fluid">
+            <div class="span7">
+                    <div class="widget-box">
+                            <div id='date-part'></div>
+                            <div id='time-part'></div>
+                    </div>
+            </div>    
+    </div>   
     <div class="row-fluid">
         <div class="span7">
             <div class="widget-box">
@@ -147,6 +169,7 @@ function drawAnthonyChart() {
     var chart = new google.visualization.PieChart(document.getElementById('Anthony_chart_div'));
     chart.draw(data, options);
 }
+
 
 
 </script>
